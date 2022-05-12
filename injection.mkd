@@ -1,0 +1,643 @@
+#Injection theory:
+
+During an injection attack, an attacker can provide malicious input to a web application 
+(inject it) and change the operation of the application by forcing 
+it to execute certain commands.
+
+#Types of web application injection in the wild:
+
+`In general 9 types of injection are mostly found`
+
+	1- code injection.
+
+	2- sql injection.
+
+	3- command injection.
+
+	4- cross-site scripting(XSS) 
+
+	5- Xpath injection.
+
+	6- Mail command injection.
+
+	7- CRLF injection.
+
+	8- Host header injection.
+
+	9- LDAP injection.
+
+	
+
+--------------------------------------------CODE-INJ START-------------------------------------------------
+#Code injection:
+
+Code injection is one of the most common types of injection attacks. 
+If attackers know the programming language, the framework, the database or 
+the operating system used by a web application, they can inject code via text 
+input fields to force the webserver to do what they want.
+
+These types of injection attacks are possible on applications 
+that lack `input data(aka attacker controlled data)` validation. 
+If a text input field lets users enter whatever they want, 
+then the application is potentially exploitable. To prevent these attacks, 
+the application needs to restrict as much as it can the input users are allowed to enter
+
+
+#Example:
+When a developer uses the PHP eval() function and passes it untrusted data 
+that an attacker can modify, code injection could be possible.
+
+`The example below shows a dangerous way to use the eval() function:`
+
+#what is eval() function in php:
+The eval() function in PHP is an inbuilt function that evaluates a string as PHP code.
+
+#php code
+--------------------------
+// A dangerous way to use the eval() function
+// in PHP
+$myvar = "varname";
+$x = $_GET['arg'];
+eval("\$myvar = \$x;");
+---------------------------
+As there is no input validation, the code above is vulnerable to a Code Injection attack.
+
+For example:
+-----------------
+/index.php?arg=1; phpinfo()
+
+Above will show all the info of php.
+-------------------
+
+While exploiting bugs like these, an attacker may want to execute system commands. 
+In this case, a code injection bug can also be used for command injection. 
+
+For example:
+-------------------
+/index.php?arg=1; system('id')
+
+This will tell the id's of the process.
+
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+--------------------------------------------CODE-INJ END-------------------------------------------------
+
+
+--------------------------------------------SQLI START-------------------------------------------------
+#Sql injection:
+
+SQL injection is a web security vulnerability that allows an attacker to interfere with the queries that an application makes to 
+its database. It basically allows an attacker to view data that they are not normally able to retrieve. 
+
+for example data belonging to other users such as their credit-card information, passwords and many other sensitive-personal
+information. and in more severe cases an attacker can gain access to the CRUD Functionality of the data-base
+
+and in my bug bounty experiance gaining access to CRUD functionality of the data-base can easily give you $10k on any 
+bug bounty platform
+
+In Many High Profile data-breaches in recent years have been the result of sql-injection attack.
+
+
+#How to look or test for sql injection(pretty basic approach)
+
+Consider a shopping application that displays products in different categories. 
+When the user clicks on the fruits category, their browser requests the URL: 
+
+> https://insecure-website.com/items?category=fruits
+
+#what is happening behind the curtain:
+
+*[client-application] --request-->---<----[php-backend-server]--(explained below)--------->--<----[data-base-backend]*
+
+*explained below part* : php server is converting the the http-request to query(like sql query etc...) for the backend database.
+
+
+#to bypass the above url i.e:  https://insecure-website.com/items?category=fruits
+
+send a payload something like this: SELECT * FROM items WHERE category = 'fruits'--' AND released = 1
+
+this will disclose everything that is inside the `fruits` catagory
+
+Going further, an attacker can cause the application to display all the items in any category, 
+including categories that they don't know about: 
+
+>malicious url: https://insecure-website.com/items?category=fruits'+OR+1=1--
+
+>malicious query: SELECT * FROM items WHERE category = 'fruits' OR 1=1--' AND released = 1
+
+The modified query will return all items where either the category is fruits, or 1 is equal to 1. 
+Since 1=1 is always true, the query will return all items
+
+
+#sqli example of the login-page bypass:
+
+Consider you're logging-in on a vuln. website with a default credential like(tom:mypassword)
+
+then, the above process will happen like http-request is going through constructor of the php server and going to 
+sql website as a query
+
+>i.e: SELECT * FROM users WHERE username = 'wiener' AND password = 'bluecheese'
+
+#malicious query : SELECT * FROM users WHERE username = 'administrator'--' AND password = ''
+	to bypass the sql data-base and gaining full admin access of the website.
+
+------------------------------------SQLI END---------------------------------------------
+
+
+
+
+------------------------------------COMMAND-INJ START---------------------------------------------
+
+OS command injection (also known as shell injection) is a web security vulnerability that allows an attacker 
+to execute arbitrary operating system (OS) commands on the server that is running an application, 
+and typically fully compromise the application and all its data
+
+#usefull commands for command injection:
+
+command 	        Linux 	            Windows
+
+ user name             whoami             whoami
+
+
+ operating Sys        uname -a             ver
+
+
+ Network config       ifconfig          ipconfig /all
+
+
+ Network Connections   netstat -an      netstat -an
+
+
+Running processes 	 ps -ef           tasklist 
+ 
+
+
+
+#Execution of arbiatiary commands:
+
+Consider a shopping application that lets the user view whether an item is in stock in a particular store. 
+
+This information is accessed via a URL like: 
+>https://insecure-website.com/stockStatus?productID=381&storeID=29
+
+how backend processes the above url:
+> stockreport.pl 381 29
+
+This command outputs the stock status for the specified item, which is returned to the user.
+
+Since the application implements no defenses against OS command injection, 
+an attacker can submit the following input to execute an arbitrary command: 
+> & echo aiwefwlguh &
+
+If this input is submitted in the productID parameter, then the command executed by the backend of the application is: 
+
+> stockreport.pl & echo aiwefwlguh & 29
+
+The echo command simply causes the supplied string to be echoed in the output, 
+and is a useful way to test for some types of OS command injection. 
+
+'hint: The & character is a shell command separator, and so what gets executed is actually 
+three separate commands one after another. and & is also used in linux to run process/commands
+in background.`
+
+
+result of the above command i.e: > stockreport.pl & echo aiwefwlguh & 29
+
+
+*How to detect command injection in a live fully functional websites \0/*
+
+Suppose, you found a URL something like this: >https://vulnerable-website/endpoint?parameter=123 
+
+To detect if the source code is not protecting against command injection, we can try a couple of methods:
+
+`Insert special characters to detect Delimiter:`
+
+We can inject some special characters to see if the application blocks anything that could be used for command injection:
+`
+&
+;
+Newline (0x0a or \n)
+&&
+|
+||
+`
+In case the application doesn’t throw any error messages, we can try injecting our command after using one of these delimiters.
+>https://vulnerable-website/endpoint?parameter=1|whoami
+
+#Detecting Blind OS command injection:
+ 
+>Time delays
+
+Most of the OS command injections are Blind, which doesn’t give any output for the executed command. 
+To verify the vulnerability, after detecting allowed special characters, we can verify 
+the command injection using time delays as below:
+
+>https://vulnerable-website/endpoint?parameter=x||ping+-c+10+127.0.0.1||
+
+`hint: -c = count in ping command`
+
+*How to prevent it?*
+
+#There are many ways to prevent this vulnerability. Couple of suggestions can be listed as below:
+
+    Avoid using shell execution functions. If unavoidable, limit their use to very specific use cases.
+
+    Perform proper input validation when taking user input into a shell execution command.
+
+    Use a safe API when accepting user input into the application.
+
+    Escape special characters in the case where a safe API is not available.
+
+    Avoid using shell execution functions. If unavoidable, limit their use to very specific use cases.
+
+    Perform proper input validation when taking user input into a shell execution command.
+
+    Use a safe API when accepting user input into the application.
+
+    Escape special characters in the case where a safe API is not available.
+
+
+--------------------------------------------COMMAND INJ END-------------------------------------------------
+
+
+
+--------------------------------------------XSS START-------------------------------------------------
+
+Cross-site scripting (also known as XSS) is a web security vulnerability that allows an attacker 
+to compromise the interactions that users have with a vulnerable application. 
+
+If the victim user has privileged access within the application, then the attacker might be able to 
+gain full control over all of the application's functionality and data. 
+
+What are the types of XSS attacks?
+
+There are three main types of XSS attacks. These are:
+
+    Reflected XSS, where the malicious script comes from the current HTTP request.
+
+    Stored XSS, where the malicious script comes from the website's database.
+
+    DOM-based XSS, where the vulnerability exists in client-side code rather than server-side code.
+
+
+#What can XSS be used for?
+
+An attacker who exploits a cross-site scripting vulnerability is typically able to:
+
+    Impersonate or masquerade as the victim user.
+
+    Carry out any action that the user is able to perform.
+
+    Read any data that the user is able to access.
+
+    Capture the user's login credentials.
+
+    Perform virtual defacement of the web site.
+
+    Inject trojan functionality into the web site.
+
+
+
+#Impact of XSS vulnerabilities
+
+The actual impact of an XSS attack generally depends on the nature of the application, 
+its functionality and data, and the status of the compromised user. For example:
+
+In a brochureware application, where all users are anonymous and all information is public, the impact will often be minimal.
+
+In an application holding sensitive data, such as banking transactions, emails, or healthcare records, 
+the impact will usually be serious.
+
+If the compromised user has elevated privileges within the application, then the impact will generally be critical, 
+allowing the attacker to take full control of the vulnerable application and compromise all users and their data.
+
+
+#How to prevent XSS attacks:
+
+Preventing cross-site scripting is trivial in some cases but can be much harder depending on 
+the complexity of the application and the ways it handles user-controllable data.
+
+In general, effectively preventing XSS vulnerabilities is likely to involve a combination of the following measures:
+
+    Filter input on arrival. At the point where user input is received, filter as strictly as possible based 
+    on what is expected or valid input.
+
+    Encode data on output. At the point where user-controllable data is output in HTTP responses, 
+    encode the output to prevent it from being interpreted as active content. Depending on the output context, 
+    this might require applying combinations of HTML, URL, JavaScript, and CSS encoding.
+
+    Use appropriate response headers. To prevent XSS in HTTP responses that aren't intended to contain any HTML or JavaScript, 
+    you can use the Content-Type and X-Content-Type-Options headers to ensure that browsers interpret 
+    the responses in the way you intend.
+
+    Content Security Policy. As a last line of defense, you can use Content Security Policy (CSP) to reduce 
+    the severity of any XSS vulnerabilities that still occur.
+
+
+
+**demonstration of xss is souly based on practical so i'll do it in class!!!**
+
+
+--------------------------------------------XSS END-------------------------------------------------
+
+
+
+
+--------------------------------------------Xpath injection start-------------------------------------------------
+
+#XPath Injection
+
+XPath Injection: is an attack technique used to exploit applications that construct XPath (XML Path Language) 
+queries from user-supplied input to query or navigate XML documents. 
+
+It can be used directly by an application to query an XML document, as part of a larger operation 
+such as applying an XSLT transformation to an XML document, or applying an XQuery to an XML document. 
+
+The syntax of XPath bears some resemblance to an SQL query, and indeed, it is possible to form 
+SQL-like queries on an XML document using XPath. For example, assume an XML document that contains 
+elements by the name user, each of which contains three subelements - name, password and account. 
+
+The following XPath expression yields the account number of the user whose name is "jsmith" and whose password is "Demo1234" 
+(or an empty string if no such user exists):
+
+ 
+
+ string(//user[name/text()='jsmith' and
+ password/text()='Demo1234']/account/text())
+
+ 
+
+If an application uses run-time XPath query construction, embedding unsafe user input into the query, 
+it may be possible for the attacker to inject data into the query such that the newly formed query 
+will be parsed in a way differing from the programmer's intention.
+
+ 
+Example
+
+Consider a web application that uses XPath to query an XML document and retrieve the account number of a user 
+whose name and password are received from the client. Such application may embed these values directly 
+in the XPath query, thereby creating a security hole.
+
+Here's an example (assuming Microsoft ASP.NET and C#):
+
+ XmlDocument XmlDoc = new XmlDocument();
+ XmlDoc.Load("...");
+ 
+ XPathNavigator nav = XmlDoc.CreateNavigator();
+ XPathExpression expr =
+ nav.Compile("string(//user[name/text()='"+TextBox1.Text+"'
+ and password/text()='"+TextBox2.Text+
+ "']/account/text())");
+ 
+ String account=Convert.ToString(nav.Evaluate(expr));
+ if (account=="") {
+        // name+password pair is not found in the XML document
+ –
+        // login failed.
+ } else {
+        // account found -> Login succeeded.
+        // Proceed into the application.
+ }
+
+When such code is used, an attacker can inject XPath expressions, e.g. provide the following value as a user name:
+
+ ' or 1=1 or ''='
+
+This causes the semantics of the original XPath to change, so that it always returns the first account number 
+in the XML document. The query, in this case, will be:
+
+ string(//user[name/text()='' or 1=1 or ''='' and
+ password/text()='foobar']/account/text())
+
+Which is identical (since the predicate is evaluates to true on all nodes) to:
+
+ string(//user/account/text())
+
+Yielding the first instance of //user/account/text().
+
+The attack, therefore, results in having the attacker logged in (as the first user listed in the XML document), 
+although the attacker did not provide any valid user name or password.
+
+ 
+#XPath 2.0
+
+XPath 2.0 (http://www.w3.org/TR/xpath20/) attained a W3C "Recommendation" status in 2007. 
+It expands the XPath 1.0 language in many aspects. The above discussion assumed XPath 1.0 syntax 
+(which is fully incorporated in XPath 2.0). Yet if XPath 2.0 is used, then additional language features 
+can be exploited by the attacker (once the initial injection vulnerability is found). 
+For example, in XPath 2.0, it is possible to reference not just the "current" document, 
+but (in theory), any accessible document, by its URL (using "http"/"https" scheme of "file" scheme).
+ 
+
+#References
+
+"XML Path Language (XPath) Version 1.0” W3C Recommendation, 16 Nov 1999
+
+[1] http://www.w3.org/TR/xpath
+
+"Encoding a Taxonomy of Web Attacks with Different-Length Vectors", G. Alvarez and S. Petrovic
+
+[2] http://arxiv.org/PS_cache/cs/pdf/0210/0210026v1.pdf
+ 
+"Blind XPath Injection", Amit Klein
+
+[3] http://www.packetstormsecurity.org/papers/bypass/Blind_XPath_Injection_20040518.pdf
+
+Failure to Sanitize Data within XPath Expressions ('XPath injection')
+
+[4] http://cwe.mitre.org/data/definitions/643.html
+
+
+--------------------------------------------Xpath injection END-------------------------------------------------
+
+
+
+--------------------------------------------Mail commmand injection START------------------------------------------------
+
+#Mail Command Injection:
+
+Mail Command Injection is an attack technique used to exploit mail servers and webmail applications that construct 
+IMAP/SMTP statements from user-supplied input that is not properly sanitized. 
+
+#Depending on the type of statement taken advantage by the attacker, we meet two types of injections: IMAP and SMTP Injection. 
+
+An IMAP/SMTP Injection may make it possible to access a mail server which you previously had no access to before-hand. 
+
+In some cases, these internal systems do not have the same level of infrastructure security hardening applied 
+to them as most front-end web servers. Hence, attackers may find that the mail server yields better results 
+in terms of exploitation. 
+
+On the other hand, this technique allows to evade possible restrictions that could exist at application 
+level (CAPTCHA, maximum number of requests, etc.).
+
+In any case, the typical structure of an IMAP/SMTP Injection is as follows:
+
+   Header: ending of the expected command;
+
+   Body: injection of the new command(s);
+
+   Footer: beginning of the expected command.
+
+`note that in order to execute the IMAP/SMTP command, 
+the previous command must have been terminated with the CRLF (%0d%0a) sequence.`
+
+Some examples of attacks using the IMAP/SMTP Injection technique are:
+ 
+   Exploitation of vulnerabilities in the IMAP/SMTP protocol
+
+   Application restrictions evasion
+
+   Anti-automation process evasion
+
+   Information leaks
+
+   Relay/SPAM
+
+#Example Attack Scenarios
+ 
+>IMAP Injection
+
+Since command injection is done over the IMAP server, the format and specifications of this protocol must be followed. 
+Webmail applications typically communicate with the IMAP server to carry out their operations in most cases 
+and hence are more vulnerable to this kind of attack.
+
+IMAP Injection is also possible in an unauthenticated state. In this scenario, IMAP commands are 
+available but limited to: CAPABILITY, NOOP, AUTHENTICATE, LOGIN and LOGOUT.
+
+ 
+Let's look at an example of IMAP Injection by exploiting the functionalities of reading a message. 
+Assume that the webmail application uses the parameter "message_id" to store the identifier of the message that 
+the user wants to read. When a request containing the message identifier is sent the request would appear as:
+ 
+>http://<webmail>/read_email.php?message_id=<number>
+ 
+Suppose that the webpage "read_email.php", responsible for showing the associated message, transmits 
+the request to the IMAP server without performing any validation over the value <number> given by the user. 
+The command sent to the mail server would look like this:
+
+
+FETCH <number> BODY[HEADER]
+
+ 
+In this context, a malicious user could try to conduct IMAP Injection attacks through the parameter "message_id" 
+used by the application to communicate with the mail server. For example, the IMAP command 
+"CAPABILITY" could be injected using the next sequence:
+
+>http://<webmail>/read_email.php?message_id=1 BODY[HEADER]%0d%0aV001 CAPABILITY%0d%0aV002 FETCH 1
+
+This would produce the next sequence on IMAP commands in the server:
+
+???? FETCH 1 BODY[HEADER]
+V001 CAPABILITY
+V002 FETCH 1 BODY[HEADER]
+
+where:
+
+Header = 1 BODY[HEADER]
+Body   = %0d%0aV100 CAPABILITY%0d%0a
+Footer = V101 FETCH 1
+
+ 
+
+#SMTP Injection
+
+Since command injection is performed over the SMTP server, the format and specifications of this protocol must 
+adhere to this protocol. 
+
+Due to the limited operations permitted by the application using the SMTP protocol, we are basically limited to sending e-mail. 
+The use of SMTP Injection requires that the user be authenticated previously, 
+so it is necessary that the attacker have a valid webmail account.
+
+Let's look at an example for evading the limit of maximum emails that are allowed to be sent.
+
+Suppose a webmail application restricts the number of emails sent in a chosen time period. 
+SMTP Injection would allow evasion of this restriction simply by adding as many RCPT commands as 
+destinations that the attacker wants:
+
+ 
+
+  POST http://<webmail>/compose.php HTTP/1.1
+  -----------------------------134475172700422922879687252
+  Content-Disposition: form-data; name="subject"
+  Test
+  .
+  MAIL FROM: external@domain1.com
+  RCPT TO: external@domain1.com
+  RCPT TO: external@domain2.com
+  RCPT TO: external@domain3.com
+  RCPT TO: external@domain4.com
+  Data
+  This is an example of SMTP Injection attack
+  .
+  -----------------------------134475172700422922879687252
+  ...
+
+
+This would produce the following sequence of SMTP commands to be sent to the mail server:
+
+ 
+
+  MAIL FROM: <mailfrom>
+  RCPT TO: <rcptto>
+  DATA
+  Subject: Test
+  .
+  MAIL FROM: external@domain.com
+  RCPT TO: external@domain1.com
+  RCPT TO: external@domain2.com
+  RCPT TO: external@domain3.com
+  RCPT TO: external@domain4.com
+  DATA
+  This is an example of SMTP Injection attack
+  .
+  ...
+
+ 
+
+#References
+
+"RFC 0821: Simple Mail Transfer Protocol"
+
+[1] http://www.ietf.org/rfc/rfc0821.txt
+
+ 
+
+"RFC 3501: Internet Message Access Protocol - Version 4rev1"
+
+[2] http://www.ietf.org/rfc/rfc3501.txt
+
+ 
+
+"CRLF Injection by Ulf Harnhammar"
+
+[3] http://www.derkeiler.com/Mailing-Lists/securityfocus/bugtraq/2002-05/0077.html
+
+ 
+
+"Email Injection - Injecting email headers"
+
+[4] http://www.securephpwiki.com/index.php/Email_Injection
+
+ 
+
+"PHP Mail Functions discussions"
+
+[5] http://www.php.net/manual/en/ref.mail.php#62027
+
+ 
+
+"E-mail Spoofing and CDONTS.NEWMAIL", David Litchfield
+
+[6] http://www.nextgenss.com/papers/aspmail.pdf
+
+ 
+
+"Testing for IMAP/SMTP Injection", Vicente Aguilera.
+
+[7] http://www.owasp.org/index.php/Testing_for_IMAP/SMTP_Injection
+
+ 
+
+"MX Injection : Capturing and Exploiting Hidden Mail Servers", Vicente Aguilera.
+
+[8] http://www.webappsec.org/projects/articles/121106.pdf
+
