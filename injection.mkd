@@ -153,21 +153,21 @@ and typically fully compromise the application and all its data
 
 #usefull commands for command injection:
 
-*command 	        Linux 	            Windows* 
+command 	        Linux 	            Windows
 
-- user name             whoami             whoami
-
-
-- operating Sys        uname -a             ver
+ user name             whoami             whoami
 
 
-- Network config       ifconfig          ipconfig /all
+ operating Sys        uname -a             ver
 
 
-- Network Connections   netstat -an      netstat -an
+ Network config       ifconfig          ipconfig /all
 
 
-- Running processes 	 ps -ef           tasklist 
+ Network Connections   netstat -an      netstat -an
+
+
+Running processes 	 ps -ef           tasklist 
  
 
 
