@@ -1,127 +1,174 @@
-#Why Is Web Application Security Important?
+#Injection theory:
 
-The world today runs on apps, from online banking and remote work apps to personal entertainment delivery and e-commerce. 
-It’s no wonder that applications are a primary target for attackers, who exploit vulnerabilities such as design flaws 
-as well as weaknesses in APIs, open-source code, third-party widgets, and access control.
+During an injection attack, an attacker can provide malicious input to a web application 
+(inject it) and change the operation of the application by forcing 
+it to execute certain commands.
 
- >Common attacks against web applications include:
+#Types of web application injection in the wild:
 
-    +Brute force(A brute force attack uses trial-and-error to guess login info, encryption keys, or find a hidden web page)
+`In general 9 types of injection are mostly found`
 
+	1- code injection.
 
+	2- sql injection.
 
+	3- command injection.
 
-    +Credential stuffing(Credential stuffing is a cyberattack method in which attackers use lists of compromised user credentials to breach into a system.)
+	4- cross-site scripting(XSS) -later
 
+	5- Xpath injection.
 
+	6- Mail command injection.
 
+	7- CRLF injection.
 
-    +SQL injection(SQL injection is a web security vulnerability that allows an attacker to interfere with the queries that an application makes to its database)
+	8- Host header injection.
 
+	9- LDAP injection.
 
+	
 
+--------------------------------------------CODE-INJ START-------------------------------------------------
+#Code injection:
 
-    +Formjacking injections(Formjacking is a type of cyber attack where hackers inject malicious JavaScript code into a webpage form–most often a payment page form)
+Code injection is one of the most common types of injection attacks. 
+If attackers know the programming language, the framework, the database or 
+the operating system used by a web application, they can inject code via text 
+input fields to force the webserver to do what they want.
 
-
-    
-
-    +Cross-site scripting(xss is a web security vuln. in which an attacker compromises the interaction between user and vulnrable web application)
-
-
-
-
-    +Cookie poisoning(Cookie poisoning—also known as session hijacking—is an attack strategy in which the attacker alters, forges, hijacks, 
-                        or otherwise "poisons" an otherwise valid cookie sent back to a server to steal data, bypass security, or both)
-
-
-
-    +Man-in-the-middle (MITM) and man-in-the-browser attacks(A man-in-the-middle attack is a type of eavesdropping attack, 
-    where attackers interrupt an existing conversation or data transfer. 
-    After inserting themselves in the "middle" of the transfer, the attackers pretend to be both legitimate participants. 
-    This enables an attacker to intercept information and data from either party while also sending malicious links or other information to both 
-    legitimate participants in a way that might not be detected until it is too late.)
-
-
+These types of injection attacks are possible on applications 
+that lack `input data(aka attacker controlled data)` validation. 
+If a text input field lets users enter whatever they want, 
+then the application is potentially exploitable. To prevent these attacks, 
+the application needs to restrict as much as it can the input users are allowed to enter
 
 
-    +Sensitive data disclosure(Sensitive data is any information that is meant to be protected from unauthorized access.)
+#Example:
+When a developer uses the PHP eval() function and passes it untrusted data 
+that an attacker can modify, code injection could be possible.
+
+`The example below shows a dangerous way to use the eval() function:`
+
+#what is eval() function in php:
+The eval() function in PHP is an inbuilt function that evaluates a string as PHP code.
+
+#php code
+--------------------------
+// A dangerous way to use the eval() function
+// in PHP
+$myvar = "varname";
+$x = $_GET['arg'];
+eval("\$myvar = \$x;");
+---------------------------
+As there is no input validation, the code above is vulnerable to a Code Injection attack.
+
+For example:
+-----------------
+/index.php?arg=1; phpinfo()
+
+Above will show all the info of php.
+-------------------
+
+While exploiting bugs like these, an attacker may want to execute system commands. 
+In this case, a code injection bug can also be used for command injection. 
+
+For example:
+-------------------
+/index.php?arg=1; system('id')
+
+This will tell the id's of the process.
+
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+--------------------------------------------CODE-INJ END-------------------------------------------------
+
+
+--------------------------------------------SQL START-------------------------------------------------
+#Sql injection:
+
+SQL injection is a web security vulnerability that allows an attacker to interfere with the queries that an application makes to 
+its database. It basically allows an attacker to view data that they are not normally able to retrieve. 
+
+for example data belonging to other users such as their credit-card information, passwords and many other sensitive-personal
+information. and in more severe cases an attacker can gain access to the CRUD Functionality of the data-base
+
+and in my bug bounty experiance gaining access to CRUD functionality of the data-base can easily give you $10k on any 
+bug bounty platform
+
+In Many High Profile data-breaches in recent years have been the result of sql-injection attack.
+
+
+#How to look or test for sql injection(pretty basic approach)
+
+Consider a shopping application that displays products in different categories. 
+When the user clicks on the fruits category, their browser requests the URL: 
+
+> https://insecure-website.com/items?category=fruits
+
+#what is happening behind the curtain:
+
+*[client-application] --request-->---<----[php-backend-server]--(explained below)--------->--<----[data-base-backend]*
+
+*explained below part* : php server is converting the the http-request to query(like sql query etc...) for the backend database.
+
+
+#to bypass the above url i.e:  https://insecure-website.com/items?category=fruits
+
+send a payload something like this: SELECT * FROM items WHERE category = 'fruits'--' AND released = 1
+
+this will disclose everything that is inside the `fruits` catagory
+
+Going further, an attacker can cause the application to display all the items in any category, 
+including categories that they don't know about: 
+
+>malicious url: https://insecure-website.com/items?category=fruits'+OR+1=1--
+
+>malicious query: SELECT * FROM items WHERE category = 'fruits' OR 1=1--' AND released = 1
+
+The modified query will return all items where either the category is fruits, or 1 is equal to 1. 
+Since 1=1 is always true, the query will return all items
+
+
+#sqli example of the login-page bypass:
+
+Consider you're logging-in on a vuln. website with a default credential like(tom:mypassword)
+
+then, the above process will happen like http-request is going through constructor of the php server and going to 
+sql website as a query
+
+>i.e: SELECT * FROM users WHERE username = 'wiener' AND password = 'bluecheese'
+
+#malicious query : SELECT * FROM users WHERE username = 'administrator'--' AND password = ''
+	to bypass the sql data-base and gaining full admin access of the website.
+
+------------------------------------SQL END---------------------------------------------
 
 
 
 
+------------------------------------Command-Inj START---------------------------------------------
 
-    +Insecure deserialization(Insecure deserialization is when user-controllable data is deserialized by a website)
+OS command injection (also known as shell injection) is a web security vulnerability that allows an attacker 
+to execute arbitrary operating system (OS) commands on the server that is running an application, 
+and typically fully compromise the application and all its data
 
+#usefull commands for command injection:
 
+command 	              Linux 	      Windows 
 
-
-    +Session hijacking(Session hijacking, also known as TCP session hijacking,
-                        is a method of taking over a web user session by surreptitiously obtaining
-                        the session ID and masquerading as the authorized user.)
-
-`One recent study1 estimated that cybercrime will cost $5.2 trillion in lost value across all industries by 2024. 
-Another estimated the losses will reach $6 trillion annually before then2. 
-Security devices and technologies are crucial for limiting, if not eliminating, 
-such costs. In addition to direct financial and data theft, web application threats can destroy assets, customer goodwill, and business reputations. 
-That makes web application security imperative for organizations of all sizes.`
+- user name            whoami        whoami
 
 
-
-#How Does Web Application Security Work?
-Different approaches to web application security address different vulnerabilities. 
-Web application firewalls (WAFs), among the more comprehensive, defend against many types of attack by monitoring 
-and filtering traffic between the web application and any user. 
-Configured with policies that help determine what traffic is safe and what isn’t, a WAF can block malicious traffic, 
-preventing it from reaching the web application and preventing the app from releasing any unauthorized data.
-
-Other web application security methods focus on user authentication and access management, app 
-vulnerability scanners, cookie management, traffic visibility, and IP denylists, for instance..
+- operating Sys        uname -a        ver
 
 
+- Network config       ifconfig       ipconfig /all
 
-#What are common web app security vulnerabilities?
 
-Attacks against web apps range from targeted database manipulation to large-scale network disruption. 
+- Network Connections  netstat -an    netstat -an
 
->Let’s explore some of the common methods of attack or “vectors” commonly exploited.
 
-   >Cross site scripting (XSS) - 
-    XSS is a vulnerability that allows an attacker to inject client-side scripts into a webpage in order to access important information directly, 
-    impersonate the user, or trick the user into revealing important information.
+- Running processes 	    ps -ef 		      tasklist 
 
-   >SQL injection (SQi) - 
-   SQi is a method by which an attacker exploits vulnerabilities in the way a database executes search queries. 
-   Attackers use SQi to gain access to unauthorized information, modify or create new user permissions, 
-   or otherwise manipulate or destroy sensitive data.
 
-   >Denial-of-service (DoS) and distributed denial-of-service 
-     (DDoS) attacks - Through a variety of vectors, attackers are able to overload a targeted server or 
-                       its surrounding infrastructure with different types of attack traffic. 
-                       When a server is no longer able to effectively process incoming requests, 
-                      it begins to behave sluggishly and eventually deny service to incoming requests from legitimate users.
-
-   >Memory corruption - 
-   Memory corruption occurs when a location in memory is unintentionally modified, 
-   resulting in the potential for unexpected behavior in the software. 
-   Bad actors will attempt to sniff out and exploit memory corruption through 
-   exploits such as code injections or buffer overflow attacks.
-
-   >Buffer overflow - 
-   Buffer overflow is an anomaly that occurs when software writing data to a defined space in memory known as a buffer. 
-   Overflowing the buffer’s capacity results in adjacent memory locations being overwritten with data. 
-   This behavior can be exploited to inject malicious code into memory, potentially creating a vulnerability in the targeted machine.
-
-   >Cross-site request forgery (CSRF) - 
-   Cross site request forgery involves tricking a victim into making a request that utilizes their authentication or authorization. 
-   By leveraging the account privileges of a user, an attacker is able to send a request masquerading as the user. 
-   Once a user’s account has been compromised, the attacker can exfiltrate, destroy or modify important information. 
-   Highly privileged accounts such as administrators or executives are commonly targeted.
-
-   >Data breach - 
-   Different than specific attack vectors, a data breach is a general term referring to the release of sensitive or 
-   confidential information, and can occur through malicious actions or by mistake. 
-   The scope of what is considered a data breach is fairly wide, and may consist of a few highly valuable records all the 
-   way up to millions of exposed user accounts.
 
 
