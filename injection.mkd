@@ -27,6 +27,8 @@ it to execute certain commands.
 	9- LDAP injection.
 
 	
+
+--------------------------------------------CODE-INJ START-------------------------------------------------
 #Code injection:
 
 Code injection is one of the most common types of injection attacks. 
@@ -77,9 +79,10 @@ For example:
 This will tell the id's of the process.
 
 uid=33(www-data) gid=33(www-data) groups=33(www-data)
---------------------
+--------------------------------------------CODE-INJ END-------------------------------------------------
 
 
+--------------------------------------------SQL START-------------------------------------------------
 #Sql injection:
 
 SQL injection is a web security vulnerability that allows an attacker to interfere with the queries that an application makes to 
@@ -97,16 +100,75 @@ In Many High Profile data-breaches in recent years have been the result of sql-i
 #How to look or test for sql injection(pretty basic approach)
 
 Consider a shopping application that displays products in different categories. 
-When the user clicks on the Gifts category, their browser requests the URL: 
+When the user clicks on the fruits category, their browser requests the URL: 
 
 > https://insecure-website.com/items?category=fruits
 
 #what is happening behind the curtain:
 
-[client-application] --request-->---<----[php-backend-server]--(explained below)--------->--<----[data-base-backend]
+*[client-application] --request-->---<----[php-backend-server]--(explained below)--------->--<----[data-base-backend]*
 
-explained below part: php server is converting the backend˙
+*explained below part* : php server is converting the the http-request to query(like sql query etc...) for the backend database.
 
+
+#to bypass the above url i.e:  https://insecure-website.com/items?category=fruits
+
+send a payload something like this: SELECT * FROM items WHERE category = 'fruits'--' AND released = 1
+
+this will disclose everything that is inside the `fruits` catagory
+
+Going further, an attacker can cause the application to display all the items in any category, 
+including categories that they don't know about: 
+
+>malicious url: https://insecure-website.com/items?category=fruits'+OR+1=1--
+
+>malicious query: SELECT * FROM items WHERE category = 'fruits' OR 1=1--' AND released = 1
+
+The modified query will return all items where either the category is fruits, or 1 is equal to 1. 
+Since 1=1 is always true, the query will return all items
+
+
+#sqli example of the login-page bypass:
+
+Consider you're logging-in on a vuln. website with a default credential like(tom:mypassword)
+
+then, the above process will happen like http-request is going through constructor of the php server and going to 
+sql website as a query
+
+>i.e: SELECT * FROM users WHERE username = 'wiener' AND password = 'bluecheese'
+
+#malicious query : SELECT * FROM users WHERE username = 'administrator'--' AND password = ''
+	to bypass the sql data-base and gaining full admin access of the website.
+
+------------------------------------SQL END---------------------------------------------
+
+
+
+
+------------------------------------Command-Inj START---------------------------------------------
+
+OS command injection (also known as shell injection) is a web security vulnerability that allows an attacker 
+to execute arbitrary operating system (OS) commands on the server that is running an application, 
+and typically fully compromise the application and all its data
+
+#usefull commands for command injection:
+
+*command 	        Linux 	            Windows* 
+
+- user name             whoami             whoami
+
+
+- operating Sys        uname -a             ver
+
+
+- Network config       ifconfig          ipconfig /all
+
+
+- Network Connections   netstat -an      netstat -an
+
+
+- Running processes 	 ps -ef           tasklist 
+ 
 
 
 
