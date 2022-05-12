@@ -1,0 +1,112 @@
+#Injection theory:
+
+During an injection attack, an attacker can provide malicious input to a web application 
+(inject it) and change the operation of the application by forcing 
+it to execute certain commands.
+
+#Types of web application injection in the wild:
+
+`In general 9 types of injection are mostly found`
+
+	1- code injection.
+
+	2- sql injection.
+
+	3- command injection.
+
+	4- cross-site scripting(XSS) -later
+
+	5- Xpath injection.
+
+	6- Mail command injection.
+
+	7- CRLF injection.
+
+	8- Host header injection.
+
+	9- LDAP injection.
+
+	
+#Code injection:
+
+Code injection is one of the most common types of injection attacks. 
+If attackers know the programming language, the framework, the database or 
+the operating system used by a web application, they can inject code via text 
+input fields to force the webserver to do what they want.
+
+These types of injection attacks are possible on applications 
+that lack `input data(aka attacker controlled data)` validation. 
+If a text input field lets users enter whatever they want, 
+then the application is potentially exploitable. To prevent these attacks, 
+the application needs to restrict as much as it can the input users are allowed to enter
+
+
+#Example:
+When a developer uses the PHP eval() function and passes it untrusted data 
+that an attacker can modify, code injection could be possible.
+
+`The example below shows a dangerous way to use the eval() function:`
+
+#what is eval() function in php:
+The eval() function in PHP is an inbuilt function that evaluates a string as PHP code.
+
+#php code
+--------------------------
+// A dangerous way to use the eval() function
+// in PHP
+$myvar = "varname";
+$x = $_GET['arg'];
+eval("\$myvar = \$x;");
+---------------------------
+As there is no input validation, the code above is vulnerable to a Code Injection attack.
+
+For example:
+-----------------
+/index.php?arg=1; phpinfo()
+
+Above will show all the info of php.
+-------------------
+
+While exploiting bugs like these, an attacker may want to execute system commands. 
+In this case, a code injection bug can also be used for command injection. 
+
+For example:
+-------------------
+/index.php?arg=1; system('id')
+
+This will tell the id's of the process.
+
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+--------------------
+
+
+#Sql injection:
+
+SQL injection is a web security vulnerability that allows an attacker to interfere with the queries that an application makes to 
+its database. It basically allows an attacker to view data that they are not normally able to retrieve. 
+
+for example data belonging to other users such as their credit-card information, passwords and many other sensitive-personal
+information. and in more severe cases an attacker can gain access to the CRUD Functionality of the data-base
+
+and in my bug bounty experiance gaining access to CRUD functionality of the data-base can easily give you $10k on any 
+bug bounty platform
+
+In Many High Profile data-breaches in recent years have been the result of sql-injection attack.
+
+
+#How to look or test for sql injection(pretty basic approach)
+
+Consider a shopping application that displays products in different categories. 
+When the user clicks on the Gifts category, their browser requests the URL: 
+
+> https://insecure-website.com/items?category=fruits
+
+#what is happening behind the curtain:
+
+[client-application] --request-->---<----[php-backend-server]--(explained below)--------->--<----[data-base-backend]
+
+explained below part: php server is converting the backend˙
+
+
+
+
