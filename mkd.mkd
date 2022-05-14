@@ -1,0 +1,99 @@
+# this is header in markdown
+
+this is general writing in makrdown
+
+---
+
+the above 3 lines puts a horizontal line below the above sentense
+
+**Table of content** - bold
+
+*Table of content* - for italic
+
+1. this is items inside the table
+2. second item in table.
+3. third and so on.
+
+
+
+##h2 header https://www.teahub.io/photos/full/21-218810_beautiful-wallpapers-download-for-mobile-download-beautiful-images.jpg
+ how to install something: `pip install some-module`
+
+###how to put some code for example:
+
+``` 
+<html>
+	<title>
+		this is title.
+	</title>
+	<body>
+		this is body of the code 
+	</body>
+
+</html>
+```
+
+> this is used to quote some things or basically this is how we quote something like hint etc...
+>to quote the name of the writer use the below thing.
+>> this is called quote under quote
+>
+> -- <cite>fahad faridi</cite>
+
+##how to make list in markdown
+
+- this is first item in the list
+
+- second item in list
+
+- and so on
+
+- [how to redirect somewhere in same file in markdown](#this-is-header-in-markdown)
+
+
+
+#how to embed link inside text
+
+[research portswigger](#https://portswigger.net/research)
+
+#how to use image here:
+
+![name of the image](./foto.jpg)
+
+#how to use two lines using html break(br) tag
+
+this is on the first line<br>this will be on second line
+
+
+##using check list in makrdown:
+
+- [ ] #task 1
+
+- [ ] #task 2
+
+- [ ] #task 3
+
+
+
+
+>how to create a custom table like a boss in markdown
+
+---
+
+| Name | Current State | Next State | 
+
+| :---- | :------ | :----- |
+
+| Green | Green | Purple |
+
+
+##how to use close and open popus:
+
+<details>
+	<summary>this is going to be the header</summary>
+
+	this is the body part partially hidden from the main page
+
+</details>
+
+
+
