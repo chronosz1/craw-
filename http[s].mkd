@@ -1,0 +1,79 @@
+# HTTP vs HTTPS
+
+## What is HTTP?
+
+An HTTP stands for Hypertext Transfer Protocol. 
+
+The HTTP protocol provides communication between different communication systems. 
+
+When the user makes an HTTP request on the browser, then the webserver sends the requested data 
+to the user in the form of web pages. 
+
+In short, we can say that the HTTP protocol allows us to transfer the data from the server to the client.
+
+>OSI MODEL:
+---
+
+![osi model](./osi.jpg)
+
+
+An HTTP is an `application layer protocol` that comes above the TCP layer. 
+It has provided some standard rules to the web browsers and servers, 
+which they can use to communicate with each other.
+
+An HTTP is a stateless protocol as each transaction is executed separately without 
+having any knowledge of the previous transactions, which means that once 
+the transaction is completed between the web browser and the server, the connection gets lost.
+
+
+## What is HTTPS?
+---
+
+The full form of HTTPS is Hypertext Transfer Protocol Secure. 
+
+The HTTP protocol does not provide the security of the data, while HTTP ensures the security of the data. 
+Therefore, we can say that HTTPS is a secure version of the HTTP protocol. 
+
+This protocol allows transferring the data in an encrypted form. The use of HTTPS protocol 
+is mainly required where we need to enter the bank account details. 
+
+The HTTPS protocol is mainly used where we require to enter the login credentials. 
+In modern browsers such as chrome, both the protocols, i.e., HTTP and HTTPS, are marked differently. 
+
+To provide encryption, HTTPS uses an encryption protocol known as `Transport Layer Security`, 
+and officially, it is referred to as a `Secure Sockets Layer (SSL)`. 
+
+This protocol uses a mechanism known as `asymmetric public key infrastructure`, 
+and it uses two different keys which are given below:
+
+-    Private key: This key is available on the web server, which is managed by the owner of a website.
+                  It decrypts the information which is encrypted by the public key.
+
+-    Public key: This key is available to everyone. It converts the data into an encrypted form.
+
+
+#Main difference between the HTTP and HTTPS
+---
+
+The major difference between the HTTP and HTTPS is the SSL certificate. 
+
+The HTTPS protocol is an extended version of the HTTP protocol with an additional feature of security.
+
+![http-vs-https](./http.png)
+
+
+>Let's understand the differences in a tabular form.
+---
+
+| HTTP                                                                               | HTTPS                                                                                                                               |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+|------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| The full form of HTTP is the Hypertext Transfer Protocol.                          | The full form of HTTPS is Hypertext Transfer Protocol Secure.                                                                       |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| It is written in the address bar as http://.                                       | It is written in the address bar as https://.                                                                                       |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| The HTTP transmits the data over port number 80.                                   | The HTTPS transmits the data over port number 443.                                                                                  |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| It is unsecured as the plain text is sent, which can be accessible by the hackers. | It is secure as it sends the encrypted data which hackers cannot understand.                                                        |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| It is mainly used for those websites that provide information like blog writing.   | It is a secure protocol, so it is used for those websites that require to transmit the bank account details or credit card numbers. |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| It is an application layer protocol.                                               | It is a transport layer protocol.                                                                                                   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| It does not use SSL.                                                               | It uses SSL that provides the encryption of the data.                                                                               |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| Google does not give the preference to the HTTP websites.                          | Google gives preferences to the HTTPS as HTTPS websites are secure websites.                                                        |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| The page loading speed is fast.                                                    | The page loading speed is slow as compared to HTTP because of the additional feature that it supports, i.e., security.              |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+
