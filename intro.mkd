@@ -1,0 +1,127 @@
+#Why Is Web Application Security Important?
+
+The world today runs on apps, from online banking and remote work apps to personal entertainment delivery and e-commerce. 
+It’s no wonder that applications are a primary target for attackers, who exploit vulnerabilities such as design flaws 
+as well as weaknesses in APIs, open-source code, third-party widgets, and access control.
+
+##Common attacks against web applications include:
+
+- Brute force(A brute force attack uses trial-and-error to guess login info, encryption keys, or find a hidden web page)
+
+
+
+
+- Credential stuffing(Credential stuffing is a cyberattack method in which attackers use lists of compromised user credentials to breach into a system.)
+
+
+
+
+- SQL injection(SQL injection is a web security vulnerability that allows an attacker to interfere with the queries that an application makes to its database)
+
+
+
+
+- Formjacking injections(Formjacking is a type of cyber attack where hackers inject malicious JavaScript code into a webpage form–most often a payment page form)
+
+
+
+
+- Cross-site scripting(xss is a web security vuln. in which an attacker compromises the interaction between user and vulnrable web application)
+
+
+
+
+- Cookie poisoning(Cookie poisoning—also known as session hijacking—is an attack strategy in which the attacker alters, forges, hijacks, 
+                   or otherwise "poisons" an otherwise valid cookie sent back to a server to steal data, bypass security, or both)
+
+
+
+- Man-in-the-middle (MITM) and man-in-the-browser attacks(A man-in-the-middle attack is a type of eavesdropping attack, 
+    where attackers interrupt an existing conversation or data transfer. 
+    After inserting themselves in the "middle" of the transfer, the attackers pretend to be both legitimate participants. 
+    This enables an attacker to intercept information and data from either party while also sending malicious links or other information to both 
+    legitimate participants in a way that might not be detected until it is too late.)
+
+
+
+
+-    Sensitive data disclosure(Sensitive data is any information that is meant to be protected from unauthorized access.)
+
+
+
+
+
+-   Insecure deserialization(Insecure deserialization is when user-controllable data is deserialized by a website)
+
+
+
+
+-   Session hijacking(Session hijacking, also known as TCP session hijacking,
+                        is a method of taking over a web user session by surreptitiously obtaining
+                        the session ID and masquerading as the authorized user.)
+
+`One recent study1 estimated that cybercrime will cost $5.2 trillion in lost value across all industries by 2024. 
+Another estimated the losses will reach $6 trillion annually before then2. 
+Security devices and technologies are crucial for limiting, if not eliminating, 
+such costs. In addition to direct financial and data theft, web application threats can destroy assets, customer goodwill, and business reputations. 
+That makes web application security imperative for organizations of all sizes.`
+
+
+
+#How Does Web Application Security Work?
+Different approaches to web application security address different vulnerabilities. 
+Web application firewalls (WAFs), among the more comprehensive, defend against many types of attack by monitoring 
+and filtering traffic between the web application and any user. 
+Configured with policies that help determine what traffic is safe and what isn’t, a WAF can block malicious traffic, 
+preventing it from reaching the web application and preventing the app from releasing any unauthorized data.
+
+Other web application security methods focus on user authentication and access management, app 
+vulnerability scanners, cookie management, traffic visibility, and IP denylists, for instance..
+
+
+
+#What are common web app security vulnerabilities?
+
+Attacks against web apps range from targeted database manipulation to large-scale network disruption. 
+
+##Let’s explore some of the common methods of attack or “vectors” commonly exploited.
+
+- Cross site scripting (XSS) - 
+ XSS is a vulnerability that allows an attacker to inject client-side scripts into a webpage in order to access important information directly, 
+ impersonate the user, or trick the user into revealing important information.
+
+- SQL injection (SQi) - 
+SQi is a method by which an attacker exploits vulnerabilities in the way a database executes search queries. 
+Attackers use SQi to gain access to unauthorized information, modify or create new user permissions, 
+or otherwise manipulate or destroy sensitive data.
+
+- Denial-of-service (DoS) and distributed denial-of-service 
+  (DDoS) attacks - Through a variety of vectors, attackers are able to overload a targeted server or 
+                    its surrounding infrastructure with different types of attack traffic. 
+                    When a server is no longer able to effectively process incoming requests, 
+                   it begins to behave sluggishly and eventually deny service to incoming requests from legitimate users.
+
+- Memory corruption - 
+Memory corruption occurs when a location in memory is unintentionally modified, 
+resulting in the potential for unexpected behavior in the software. 
+Bad actors will attempt to sniff out and exploit memory corruption through 
+exploits such as code injections or buffer overflow attacks.
+
+- Buffer overflow - 
+Buffer overflow is an anomaly that occurs when software writing data to a defined space in memory known as a buffer. 
+Overflowing the buffer’s capacity results in adjacent memory locations being overwritten with data. 
+This behavior can be exploited to inject malicious code into memory, potentially creating a vulnerability in the targeted machine.
+
+- Cross-site request forgery (CSRF) - 
+Cross site request forgery involves tricking a victim into making a request that utilizes their authentication or authorization. 
+By leveraging the account privileges of a user, an attacker is able to send a request masquerading as the user. 
+Once a user’s account has been compromised, the attacker can exfiltrate, destroy or modify important information. 
+Highly privileged accounts such as administrators or executives are commonly targeted.
+
+- Data breach - 
+Different than specific attack vectors, a data breach is a general term referring to the release of sensitive or 
+confidential information, and can occur through malicious actions or by mistake. 
+The scope of what is considered a data breach is fairly wide, and may consist of a few highly valuable records all the 
+way up to millions of exposed user accounts.
+
+
