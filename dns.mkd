@@ -1,0 +1,268 @@
+## DNS Definition
+---
+
+The Domain Name System (DNS) turns domain names into IP addresses, which browsers use to load internet pages. 
+
+Every device connected to the internet has its own IP address, which is used by other devices to locate the device. 
+
+DNS servers make it possible for people to input normal words into their browsers, such as Fortinet.com, 
+without having to keep track of the IP address for every website.
+
+
+## What is a DNS Server?
+---
+A DNS server is a computer with a database containing the public IP addresses associated with the names of the websites 
+an IP address brings a user to. 
+
+`DNS acts like a phonebook for the internet. Whenever people type domain names, like Fortinet.com or Yahoo.com, into 
+the address bar of web browsers, the DNS finds the right IP address.`
+
+The site’s IP address is what directs the device to go to the correct place to access the site’s data.
+
+Once the DNS server finds the correct IP address, browsers take the address and use it to send data to 
+content delivery network (CDN) edge servers or origin servers. Once this is done, the information on 
+the website can be accessed by the user. 
+
+The DNS server starts the process by finding the corresponding IP address for a website’s uniform resource locator (URL).
+
+## How Does DNS Work?
+---
+In a usual DNS query, the URL typed in by the user has to go through four servers for the IP address to be provided. 
+The four servers work with each other to get the correct IP address to the client, and they include:
+
+-    DNS recursor: The DNS recursor, which is also referred to as a DNS resolver, receives the query from the DNS client. 
+                    Then it communicates with other DNS servers to find the right IP address. After the resolver 
+                    retrieves the request from the client, the resolver acts like a client itself. 
+                    As it does this, it makes queries that get sent to the 
+                    other three `DNS servers: root nameservers, top-level domain (TLD) nameservers, and authoritative nameservers.`
+
+
+
+-   Root nameservers: The root nameserver is designated for the internet's DNS root zone. Its job is to answer requests sent to it 
+                     for records in the root zone. It answers requests by sending back a list of the 
+                     authoritative nameservers that go with the correct TLD.
+
+
+
+-   TLD nameservers: A TLD nameserver keeps the IP address of the second-level domain contained within the TLD name. 
+                        It then releases the website’s IP address and sends the query to the domain’s nameserver.
+
+
+
+
+-   Authoritative nameservers: An authoritative nameserver is what gives you the real answer to your DNS query. 
+                               There are two types of authoritative nameservers: a master server or primary nameserver 
+                               and a slave server or secondary nameserver. The master server keeps the original copies 
+                               of the zone records, while the slave server is an exact copy of the master server. 
+                               It shares the DNS server load and acts as a backup if the master server fails.
+
+
+
+![dns-in-depth](./dns.jpg)
+
+
+---
+## Authoritative DNS Servers vs. Recursive DNS Servers: What’s the Difference?
+---
+
+Authoritative nameservers keep information of the DNS records. A recursive server acts as a middleman, positioned between 
+the authoritative server and the end-user. To reach the nameserver, the recursive server has to “recurse” 
+through the DNS tree to access the domain’s records.
+
+## Authoritative DNS Server
+
+To use the phone book analogy, think of the IP address as the phone number and the person’s name as the website’s URL. 
+Authoritative DNS servers have a copy of the “phone book” that connects these IP addresses with their corresponding domain names. 
+They provide answers to the queries sent by recursive DNS nameservers, providing information on where to find specific websites. 
+The answers provided have the IP addresses of the domains involved in the query.
+
+Authoritative DNS servers are responsible for specific regions, such as a country, an organization, or a local area. 
+Regardless of which region is covered, an authoritative DNS server does two important jobs. 
+First, the server keeps lists of domain names and the IP addresses that go with them. 
+Next, the server responds to requests from the recursive DNS server regarding the IP address that corresponds with a domain name. 
+
+Once the recursive DNS server gets the answer, it sends that information back to the computer that requested it. 
+The computer then uses that information to connect to the IP address, and the user gets to see the website.
+
+
+## Recursive DNS Server
+---
+After a user types in a URL in their web browser, that URL is given to the recursive DNS server. 
+The recursive DNS server then examines its cache memory to see whether the IP address for the URL is already stored. 
+If the IP address information already exists, the recursive DNS server will send the IP address to the browser. 
+The user is then able to see the website for which they typed in the URL.
+
+On the other hand, if the recursive DNS server does not find the IP address when it searches its memory, 
+it will proceed through the process of getting the IP address for the user. 
+The recursive DNS server's next step is to store the IP address for a specific amount of time. 
+This period of time is defined by the person who owns the domain using a setting referred to as time to live (TTL).
+
+
+
+
+## DNS Servers and IP Addresses
+---
+Computers and various devices that use the internet depend on IP addresses to send a user's 
+request to the website they are attempting to reach. Without DNS, you would have to keep track of the 
+IP addresses of all the websites you visit, similar to carrying around a phone book of websites all the time. 
+The DNS server allows you to type in the name of the website. It then goes out and gets the right IP address for you. 
+Armed with the IP address, your computer (or browser) can bring you to the site.
+
+For instance, if you input www.fortinet.com in your web browser, that URL, on its own, cannot bring you to the website. 
+Those letters cannot be “read” by the servers that connect you with the site. 
+However, the servers are able to read IP addresses. The DNS server figures out which IP address corresponds with 
+www.fortinet.com and sends it to your browser. Then the website appears on your device’s screen because the browser 
+now knows where to take your device.
+
+
+## Browser DNS Caching
+---
+The operating system (OS) used by your device stores DNS resource records through the use of caching. 
+Caching prevents redundancy when someone tries to go to a site. This, in turn, reduces the amount of 
+time it takes to get to the website. If the device you are using recently went to the page it is trying to access, 
+the IP address can be supplied by the cache. In this way, the website request can be completed without involving the DNS server.
+
+The DNS cache, therefore, helps streamline the DNS lookup process that would otherwise be necessary to link a domain 
+name to an IP address. This makes the process of getting to the website much faster.
+
+
+
+## OS DNS Caching
+---
+The operating systems of many devices are capable of maintaining a local copy of DNS lookups. 
+This makes it possible for the OS to quickly get the information it needs to resolve the URL to the correct IP address.
+
+
+
+
+## How to Perform a DNS Lookup
+---
+Each domain has DNS records, and these are pulled by nameservers. 
+You can check the status of the DNS records associated with your domain. 
+You can also examine the nameservers to ascertain which records are being pulled by the servers. 
+On a Windows computer, for example, this is done using the NSLOOKUP command. 
+
+
+
+Here’s how to do it:
+---
+-   Access the Windows command prompt by going to Start >> command prompt. You can also get to it via Run >> CMD.
+
+-   Type NSLOOKUP and then hit Enter. The default server gets set to your local DNS, and the address will be your local IP address.
+
+-   You then set the type of DNS record you want to look up by typing "set type=##" where "##" is the record type, 
+    then hit Enter. You can also use A, AAAA, A+AAAA, ANY, CNAME, MX, NS, PTR, SOA, or SRV as the record type.
+
+-   Enter the domain name you want to query. Hit Enter.
+
+-   At this point, the NSLOOKUP returns the record entries for the domain you entered.
+
+
+
+## What is a DNS Revolver?
+---
+A DNS resolver is also referred to as a recursive resolver. It is designed to take DNS queries sent 
+by web browsers and applications. The resolver receives the website URL, and it 
+then retrieves the IP address that goes with that URL.
+
+
+
+## What are the Types of DNS Queries?
+--- During the DNS lookup process, three different kinds of queries are performed.  The queries are combined to optimize the resolution of the DNS, saving time.  
+-   Recursive query
+
+-   Iterative query
+
+-   Non-recursive query
+
+
+
+
+## Free vs. Paid DNS Servers: What is the Difference?
+---
+In some cases, a regular user may not need a paid DNS server. However, there are significant benefits of paying for a premium DNS.
+
+-   Dynamic DNS (DDNS): A DDNS maps internet domains, matching them to IP addresses. 
+                        This enables you to get into your home computer no matter where you are in the world. 
+                        DDNS is different from a regular DNS because it works with changing or dynamic IP addresses, 
+                        making them a good choice for home networks.
+
+
+
+-   Secondary DNS: A secondary DNS nameserver makes sure that your domain does not go offline. 
+                    It provides you with a redundancy or backup that can be accessed in 
+                    the event of a complication.
+
+
+
+-   Management interface: Many paid DNS servers offer users a dashboard they can use to manage their 
+                          service and tweak it according to their needs.
+
+
+
+-   Two-factor authentication: You can provide protection for your domain with an extra level of authentication.
+
+
+
+-   More security: When you make use of a paid DNS server, you get another protective level of security. 
+                    This helps shield your website from attackers.
+
+
+
+-   Better, faster performance: A paid DNS server comes with a service-level agreement (SLA). Each SLA guarantees a high 
+                                rate of DNS resolution, often between 99% and 100%.
+
+-   Customer service: With a paid DNS server, you get the additional advantage of customer service that can 
+                      answer questions and troubleshoot any issues.
+
+
+
+
+## What is DNS Cache Poisoning?
+---
+DNS cache poisoning, also called DNS spoofing, involves the introduction of corrupt DNS data into the resolving device’s cache. 
+This results in the nameserver returning the wrong IP address.
+
+The operating systems of many devices are capable of maintaining a local copy of DNS lookups. 
+This makes it possible for the OS to quickly get the information it needs to resolve the URL to the correct IP address.
+
+> FAQs
+---
+
+
+
+##What is DNS?
+
+
+A Domain Name System (DNS) turns domain names into IP addresses, which allow browsers to get to websites and 
+other internet resources. Every device on the internet has an IP address, which other devices can 
+use to locate the device. Instead of memorizing a long list of IP addresses, people 
+can simply enter the name of the website, and the DNS gets the IP address for them.
+
+
+
+
+
+##What is an example of DNS?
+---
+
+An example of a DNS is that which is provided by Google. The address of Google’s primary DNS is 8.8.8.8.
+
+## How do I find my DNS?
+---
+On a Windows computer, you can find your DNS by going to the command prompt, typing “ipconfig/all”, and then hitting Enter.
+
+##What are the types of DNS?
+
+There are four types of DNS: recursive resolvers, root nameservers, TLD nameservers, and authoritative nameservers.
+
+##Is changing DNS safe?
+
+Yes, changing your DNS does not present any inherent dangers.
+
+
+##Should I use private DNS?
+
+Yes, a private DNS can offer you enhanced security compared to other DNS options.
+
+
