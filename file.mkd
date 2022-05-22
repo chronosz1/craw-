@@ -1,0 +1,129 @@
+#Flawed file type validation: 
+
+> Content-Type:application/x-www-form-url-encoded
+
+used to send things containing text eg-> name, email, address and credit-card inforamtion etc...
+
+`for sending binary mixed data like: image, pdf etc..`
+
+> Content-Type: multipart/form-data
+
+## HTTP request for uploading an image:
+--- 
+
+```
+POST /images HTTP/1.1
+Host: normal-website.com
+Content-Length: 12345
+Content-Type: multipart/form-data; boundary=---------------------------012345678901234567890123456
+
+---------------------------012345678901234567890123456
+Content-Disposition: form-data; name="image"; filename="example.jpg"
+Content-Type: image/jpeg
+
+[...binary content of example.jpg...]
+
+---------------------------012345678901234567890123456
+Content-Disposition: form-data; name="description"
+
+This is an interesting description of my image.
+
+---------------------------012345678901234567890123456
+Content-Disposition: form-data; name="username"
+
+wiener
+---------------------------0123456789012345678901234
+
+```
+
+as you can see `Content-Disposition` header which will give you some basic information 
+about what kind of data is send in the request
+
+
+#MIME-type: 
+A media type (also known as a `Multipurpose Internet Mail Extensions` or MIME type) indicates 
+the nature and format of a document, file, or assortment of bytes. 
+MIME types are defined and standardized in IETF's RFC 6838. 
+
+One way that websites may attempt to validate file uploads is to check that this input-specific 
+`Content-Type` header matches an expected MIME type. If the server is only expecting image files, 
+	for example, it may only allow types like image/jpeg and image/png. 
+	Problems can arise when the value of this header is implicitly trusted by the server.
+
+	`Note: for a website first line of defense is: **to prevent upload of any malicious file to server**
+	if one is unluckely compromised then **Second line of Defense is**:
+	stop the server from executing any scripts that do slip through the net.`
+
+
+
+	note2: Web servers often use the filename field in multipart/form-data requests to 
+	determine the name and location where the file should be saved. 
+
+
+
+# Insufficient blacklisting of dangerous file types:
+    
+websites now a days try to prevent webshell execution by blacklisting malicious file extensions like `.php`
+but developers are not sometimes experinced enough to block all sorts of file extension or aka lesser known file extensions
+such as `.php5 and .shtml`. 
+
+
+
+## how to bypass firewall defense when uploading a webshell throws an error like 403 forbidden:
+
+try to look closely at the `http-headers of the 403 Forbidden` response and **get the idea what kind of server is being used by the web-application**
+
+
+>if you see a web server header is saying `Apache` means there is a chance to upload webshell via changing the configs of a file 
+    called `.htaccess`
+
+```
+    changing .htaccess files will give you permission to upload malicious files on the server and make server execute that
+```
+
+
+# how to manupulate .htaccess files to upload webshell and execute it
+
+- step1: filename=".htaccess"  selecting this file on the webserver
+
+- step2: Content-Type: text/plain  for injection text input
+
+- step3:  AddType application/x-httpd-php .lsdfahad   means we're commanding to execute all `.lsdfahad` extension files as a `.php`
+
+
+if you get 200ok response code means you literally edited the .htaccess file of the apache webserver
+
+
+## sometimes multiple line of defense can be bypassed just via file obfuscation(i.e making it unreadible by humans)
+
+in file upload vulnrablity this is how its done just by sending null byte injection:
+
+> filename="webshell.php%00.png"
+
+> filename="webshell.php.png"
+
+> filename="webshell.php;.png"
+
+> filename="webshell.php/.png"
+
+
+
+
+## Uploading files using PUT
+
+It's worth noting that some web servers may be configured to support PUT requests. If appropriate defenses 
+aren't in place, this can provide an alternative means of uploading malicious files, even when 
+an upload function isn't available via the web interface.
+
+```
+PUT /images/exploit.php HTTP/1.1
+Host: vulnerable-website.com
+Content-Type: application/x-httpd-php
+Content-Length: 49
+
+<?php echo file_get_contents('/path/to/file'); ?>
+```
+
+> note: to check weather `PUT method` is available or not always send `OPTIONS` method for checking
+
+
