@@ -1,0 +1,125 @@
+## What is directory traversal?
+
+directory traversal is a web security vulnrablity that allows an attacker to view arbitary 
+files on webserver that is running the web-application.
+
+> for example:
+application code and data, credentials for back-end systems, and sensitive operating system files. 
+In some cases, an attacker might be able to write to arbitrary files on the server, 
+allowing them to modify application data or behavior, and ultimately take full control of the server. 
+
+
+## Reading arbitrary files via directory traversal
+---
+
+the below HTML display some image on the webpage:
+> <img src="/loadImage?filename=218.png">
+
+the `loadImage` part of the url takes the param `filename` and returns the contents of the specified 
+file from the data base of the webapplication.
+
+```
+note: Suppose, the images are stored somewhere on the server like /var/www/images.
+
+the application appends the requested file name to the base directory. and uses a filesystem API 
+to read the contents of the file.
+
+front end:
+<img src="/loadImage?filename=218.png">
+
+backend: 
+/var/www/images/218.png
+
+```
+
+The application implements no defenses against directory traversal attacks, 
+so an attacker can request the following URL to retrieve an arbitrary file from the server's filesystem: 
+---
+> https://insecure-website.com/loadImage?filename=../../../etc/passwd
+
+### This causes the application to read from the following file path: 
+
+> /var/www/images/../../../etc/passwd
+
+> for windows: you need to use sequence like `..\`
+
+- https://insecure-website.com/loadImage?filename=..\..\..\windows\win.ini
+
+
+note: web applications append some type of defense against path transversal attacks
+        when `user input is going into file paths`
+
+
+## Common obstacles for bypassing path transversal: 
+
+- using absolute path {i.e /etc/passwd}
+
+- sequence obfuscation bypass {i.e ..././..././..././etc/passwd}
+
+- sanatization of any path transversal sequence from the attacker controlled input
+    to bypass this use *single or double url encoding* 
+
+- if the web application requires that the filename must end with the expected file extension
+    for that we use null byte injection: {i.e:  filename=../../../etc/passwd%00.png}
+
+
+
+>   like: { ../ ==> single [%2e%2e%2f] double[%252e%252e%252f] }
+
+
+## intresting: 
+sometimes, direct jumping from one directory to another is restricted on the website.
+so to bypass this you need to append the `base-directory` name without this path 
+transverl is not possible.
+
+> eg: filename=/var/www/images/../../../etc/passwd
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
