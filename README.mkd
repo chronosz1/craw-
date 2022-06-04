@@ -1,0 +1,233 @@
+## version control system :
+
+- Centeralized: here all team members connect to the main centeralized server to get the
+               latest copy of the code { eg- subversion and Microsoft team foundation }
+               cons of this server: if the centralized server goes down you can't collab
+                anymore.
+
+- Distributed: here everyone has a distributed server with the copy of code and it's history
+                git and mercurial are the example of the Distributed server
+
+
+git 3 parts:
+
+- system : all users
+
+- global : all repos of the current user
+
+- local : the current repo
+
+1: setting up user : $ git config --global user.name "lsdfahad"
+
+2: setting up email : $ git config --global user.email "lsdfahad@pm.me"
+
+3: setting up editor : $ git config --global core.editor "vim"
+
+# to edit all the global settings use this:
+    $ git config --global -e
+
+note: abc\r\n in windows [\r: carriage return] [\n: line feed]
+     in linux: [\n] is line feed if we endup messing with line it creates a big ERROR
+
+     > to auto deal with above error we use a property called **core.autocrlf**
+     crlf == carriage return and line feed
+
+how to do it: $ git config --global code.autocrlf input [for mac/linux]
+how to do it: $ git config --global code.autocrlf true [for windows]
+
+how to make dir in git:
+
+$ git init : to initialize a dir.
+
+the .git dir is hidden and this is where git contains information about your history
+
+
+we every day modify our code in the dir where .git dir is hidden then
+after finishing the edit part git takes a snapshot of the current code and
+saves it in .git repo
+
+> what is a staging area/index in git that none other version-control system have?
+its a stage to review our code before making the commit the git-repo.
+
+
+## how work flow is done ?
+suppose you added some files in dir where .git is present.
+now before making a commit we need to send these files to the staging area:
+    $ git add file1 file2
+
+now we use this command to make a commit(i.e permanently store the snapshot to the .git repo)
+
+ $ git commit -m "Initial commit." { -m contains what kind of commit is done here.}
+
+ important note: before making any commit the staging are is containig the same screenshot
+                add if you changed the `file1` suppose then when you add it. it will replace
+                the staging are with the new edited `file1`
+
+i.e $ git add file1 : this will put the edited/new file1 to the staging area.
+
+but the above code is still in staging area not commited to the git repo
+
+for that: $ git commit -m "file1 is now updated and the problem is fixed now."
+
+
+## how to delete any file from the staging area?
+- step1: delete the file2 from the dir.
+
+- step2: $ git add file2:  this will delete the file2 from the staging area.
+
+- step3: for permanently removing from the git repo: $ git commit -m "deleting file2 from the repo"
+
+
+# what a commit contains:
+- unique id for each commit.
+- a message about the commit.
+- date/time of the commit.
+- Author name.
+- complete snapshot.
+
+## how git manages the storage:
+- it compresses the content
+- dosen't store the duplicate content
+
+
+## staging files:
+suppose we create or put two files in the git dir.
+
+$ echo "this is fahad" > file1.txt
+$ echo "this is fahad" > file2.txt
+
+you will see a question mark in either vim or git themed bash powerline
+because git dosent track your files yet.
+
+use this command to check the status of the files in the git dir.
+
+$ git status: if the files are shown in `red` means they are not tracked or even in
+                the staging area.
+
+same for adding the files to the staging area: $ git add file1.txt file2.txt
+
+> to popular commands 1 $ git add *.txt [this will add all the txt files to the staging area]
+
+> second command is $ git add . [this is a dangerous command this will put every files in
+>                                   the staging area.]
+
+# eg : suppose we modified file1.txt
+now check the status it will show modified
+
+## how do we commit any file:
+a commit is permanently saved in the git repo but there is a cach.
+
+we use $ git commit -m "a short message about the current commit"
+
+but for long explanation we use : $ git commit
+the above command will open a short files for long explanation
+
+## renaming or moving files:
+let's rename a file file.txt to main.js in the main dir.
+
+now run> $ git status
+
+note: `git dosent track your new files so for pusing them into staging area we need to use $ git add <filename>`
+for git to track those files.
+
+
+## to move files in github we use git-move:
+
+$ git mv main.js file.txt
+then run to see the effect
+
+$ git status
+
+## Ignoring files
+every devs make a dir something like `logs` and did'nt want git repo to track this.
+
+for that: create a dir = $ mkdir logs
+
+note: there is a file with no name only extension k/a `.gitingore`
+
+first create a dir and fill it with sensitive files like all logs files(i.e main.log etc...)
+
+$ mkdir logs/
+
+$ echo 'this is a sensitive files' > logs/main.log
+
+to avoid letting sensitive going into staging area :
+
+try this commnad: $ echo logs/ > .gitignore
+
+the above command will throw the sensitive files of the log/ dir into .gitignore
+
+now we need to send `.gitignore` to staging area.
+
+for that: $ git add .gitignore
+
+
+:::::::::::::::::::;;important::::::::::::::::::
+
+# to check how many files are in staging area?
+
+$ git ls-files
+
+# for removing any files from staging area without removing it from the main dir. we use?
+
+$ git rm -h
+
+$ git rm --cached -r <dir-name>
+
+##how good this command is:
+
+$ git status -s
+
+what's the catch in the above command
+
+suppose you modified a file and created a file with the same content
+
+$ echo hello >> oldfile.txt || $ echo hello > newfile.txt
+
+command $ git status -s
+ M README.mkd : single M(red) means modified in woriking dir
+
+AM oldnew/oldfile.txt : A means added and M is means modified
+
+?? .README.mkd.swp
+
+MM(green,red) .README.mkd.swp : it means file is in staging area but some changes are done in `working-dir`
+
+?? Git-Cheat-Sheet.pdf
+
+?? Session.vim
+
+?? logs/ : these are new files and are not in staging area
+
+?? oldnew/newfile.txt
+
+there are two columns ?? -> the left column represents the `staging-area` and the
+    right column represents the `working-dir`
+
+
+## viewing the staged and unstaged changes?
+
+$ git diff --staged : this will show that what chuck of code is in this area which going into the next commit
+
+output :
+
+```
+diff --git a/oldnew/oldfile.txt b/oldnew/oldfile.txt
+> the above line of response is comparing a/(old) file with b/(new) in the staging area
+
+new file mode 100644
+index 0000000..48600b4 : some metadata no one cares
+--- /dev/null : this shows the changes in the old files with a minus sign (-)
+the above show this is an entierely new file
+
++++ b/oldnew/oldfile.txt : this line shows the changes in the new file
+@@ -0,0 +1,2 @@
+> the above thing is called header. it contains two parts first segment starts with -ve is
+>  representing the old file in the staging area and second segement represents with +ve is rep. the new one
+> below in new file in staging area 2 lines is been extracted
++hello
++this is another line
+```
+
+watch from 44:00
+
