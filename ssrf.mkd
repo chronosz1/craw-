@@ -1,0 +1,201 @@
+## SSRF:
+
+Server-side request forgery (SSRF) attacks exploit software vulnerabilities that could
+allow an attacker to trick the server-side application to allow access to the server or
+modify resources.
+
+The attack can be successful if the target application supports data import from URLs
+or reads data from the URLs without proper safeguards (more on that later).
+
+The attacker manipulates the URLs to make HTTP requests to arbitrary domains of their choosing by
+tampering with URL path traversal or by replacing it altogether.
+
+SSRF attacks can exploit URLs linking to internal services within the organization’s infrastructure
+that should not be exposed to users or external systems that should not be accessible to users.
+
+If successful, an SSRF attack can lead to unauthorized actions or unauthorized access to the organization’s
+sensitive data, such as login credentials, for example.
+
+These can affect the web application itself, the back-end systems it relies on, or external servers
+with which the application communicates.
+
+While not necessarily the first exploit that comes to mind when thinking about online attacks,
+SSRF attacks are serious business. According to hackerone.com, in 2020,
+
+SSRF attacks ranked fourth (out of ten) in terms of the amount spent on bug bounties,
+coming in at just under $3 million. And its year-on-year growth is estimated at 103%.
+
+![hackerone](./1.jpg)
+
+---
+
+> There are different types of SSRF attacks. Let’s look at some of them in a bit more detail.
+
+## Server SSRF attacks
+
+The key to an SSRF attack is to exploit the trust relationships the web application maintains
+with other parts of the organization’s infrastructure or with external services.
+
+To pull off a server SSRF attack, an attacker attempts to exploit the process used by a web browser
+(or any other client app) to access a URL on the server.
+
+The attacker either modifies or replaces the original URL with a malicious URL they crafted themselves.
+The malicious URL typically uses the 127.0.0.1 IP address or the “localhost” hostname,
+which points to the server’s local file system.
+
+If the server accepts the request and routes it,the attacker has successfully penetrated the server’s
+filesystem, leading to all sorts of potential damage and data loss.
+
+Here’s an example. Suppose we host a weather website. The way it would work is that the web application
+would query a trusted server for the current weather conditions of a given region and display them.
+
+This can be achieved by using a REST API, which passes a URL with an API request from a user’s browser
+to the server. The request could look something like this:
+
+```
+POST /meteorology/forecasts HTTP/1.0
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 113
+weatherApi=http://data.weatherapp.com:8080/meterology/forecasts/check%3FcurrentDateTime%3D6%26cityId%3D1
+```
+---
+
+> The attacker could change the above URL as follows:
+`weatherApi=http://localhost/admin`
+
+The above would cause the server to grant the attacker access to the contents of the /admin folder.
+And because the request originated from within the server’s file system, it bypasses normal
+access controls and exposes the information despite the attacker being unauthorized.
+
+### Back-end SSRF attacks:
+
+---
+
+As mentioned above, SSRF attacks can also target the server’s back-end component, with which it
+has a trusted relationship. That would be another machine located on the internal network from
+which the server fetches content.
+
+Suppose the server has full access rights once connected to the
+back-end. In that case, an attacker could modify the API call URL to gain access to
+sensitive information or perform any number of unauthorized actions.
+
+Back-end components typically have weaker security mechanisms in place because they’re considered
+protected by being located inside the network perimeter.
+
+Building upon the above example, an attacker could replace the API call as follows:
+> weatherApi=http://192.168.100.5/etc/passwd
+
+Suppose the server connects to a back-end component on IP address 192.168.100.5 and has the
+proper permissions to access the /admin directory on that component’s file system.
+
+In that case, the attacker will be able to access and view the contents of the /admin directory.
+Basic SSRF attacks vs. blind SSRF attacks
+
+The two above examples are examples of basic or non-blind SSRF attacks. What that means is that the attacker is getting feedback from the server in the form of visible data.
+
+In our first example, the attacker gains access to the /admin directory. In the second example,
+they access the /etc/passwd file.
+
+In a blind SSRF attack, the server doesn’t return any data to the attacker explicitly.
+A blind SSRF attack focuses on unauthorized actions rather than unauthorized data.
+
+That means attempting to modify something on the server, altering or deleting sensitive files,
+changing user or file permissions, etc., rather than obtaining specific data from the server.
+
+Let’s take our second example above and adapt it to a blind SSRF attack. Instead of changing the
+API call URL to:
+> weatherApi=http://192.168.100.5/etc/passwd
+
+Let’s assume the attacker changed it to:
+> weatherApi=http://external-server/a-very-large-image-file.png
+
+Depending on the server’s configuration, it may well repeatedly attempt to fetch this abnormally
+large file from the external server, which would eventually cause the web application to crash,
+resulting in a denial of service (DoS).
+
+This attack is considered “blind” because it’s not
+attempting to view any information but rather performing detrimental actions on the server’s behalf.
+
+## Risks of SSRF attacks
+
+When successful, SSRF attacks enable an attacker to manipulate a web server into performing
+actions it shouldn’t perform or displaying information it shouldn’t display.
+
+Both of these outcomes can have serious consequences. Here’s a shortlist of some of the typical
+targets associated with SSRF attacks.
+
+## Exposing sensitive data
+
+We’ve covered this already, but we’re still mentioning it because crafting a malicious URL to
+obtain sensitive data is probably the most common SSRF payload.
+
+Obtaining sensitive credentials can allow an attacker to wreak all sorts of havoc on the server.
+And the more permissions the credentials have, the bigger the risk.
+
+An attacker who manages to obtain the credentials of the server administrator, for example,
+could potentially take over the entire server.
+
+## Cross-Site Port Attacks (XSPA)
+
+As we’ve established, SSRF attacks don’t need to return any data to the attacker.
+However, specific metadata, such as response times to requests, can allow the attacker to determine
+whether or not a request was successful.
+
+If they can pinpoint a valid port and host pair,the attacker could port scan the application server’s
+network using this metadata in a Cross-Site Port Attack (XSPA).
+
+The timeout for a network connection typically remains unchanged, regardless of the host or port.
+Because of that, an attacker could put through a request they know will fail and use this as a
+baseline for future response times. Successful requests will usually be much shorter than the baseline.
+
+With that knowledge, attackers can fingerprint the services running over the network,
+allowing them to initiate a protocol smuggling attack.
+
+## Denial of Service (DoS) attacks
+
+A denial of service attack is an attack in which requests flood a server to the point that it can
+no longer cope with the load and crashes.
+
+There are many examples of these kinds of attacks in the wild – they’re pretty common.
+The SSRF version of a DoS attack would target the network’s internal servers.
+
+The volume of requests received by the internal servers is usually much lower than the traffic to
+public-facing servers. Because of that, they tend to be configured for lower bandwidth than
+their public-facing counterparts.
+
+An attacker could mount an SSRF to flood the internal servers with large amounts of traffic to
+eat up all their available bandwidth and crash the internal servers, resulting in an internal DoS attack.
+
+## Embedding malware
+
+We won’t dwell on this one too much, as it’s relatively obvious. But if an attacker gains access to
+your internal servers, through SSRF or otherwise, they can embed malware onto the servers and
+infect any machines that connect to the now compromised server.
+
+## Remote Code Execution (RCE)
+
+Some modern web services are designed to be interfaced entirely via HTTP. Without proper safeguards
+over the control of URLs, an attacker may gain access to your servers by exploiting some of your
+running services. Gaining access to a server can mean, in certain circumstances, being able to
+execute arbitrary code (RCE), which could have any number of consequences – none of them good.
+
+> SSRF attack Example
+
+## CapitalOne
+
+In 2019, CapitalOne fell victim to an SSRF attack. It remains one of the most well-known
+successful SSRF attacks today and it led to the leaking of over 100 million customer records.
+
+The attack was successful because of a mix of poor security practices and the presence of bugs
+within its infrastructure.
+
+The CapitalOne site was hosted on Amazon’s AWS platform in which an SSRF vulnerability was present.
+The vulnerability allowed the attacker to obtain AWS credentials by using the application server itself,
+as AWS enables the application to obtain its own metadata.
+
+Once the attacker had secured the credentials, they could funnel the stolen data using AWS management tools, such as the command-line interface (CLI) and E3 storage.
+
+A notable point about this attack is that the web application firewall (WAF) failed to identify and
+block the attack. We don’t know whether the attacker used a WAF bypass or if it was turned off.
+Couple that with the fact that the access credentials were too permissive, and you had the
+perfect conditions for a successful SSRF attack.
