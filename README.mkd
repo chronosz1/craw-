@@ -1,0 +1,235 @@
+# web applications uses templates for using dynamic contents like dynamic-pages and for emails
+
+let's take an example: 
+
+suppose, a marketing web-site uses an twig template for sending bulk mails and greetings 
+to its users!
+
+> suppose if the names of the users is `passed` into the templates without any
+	sanitization the code of the template will be something like this:
+
+
+$output = $twig->render("Dear {first_name_userinput}, ", array("first_name_userinput" => user.first_name_userinput) );
+
+suppose, if the developer is able to customise the above code problem arises:
+
+$output = $twig->render($_GET['custom_email'], array("first_name_userinput" => user.first_name_userinput) );
+
+
+testing:
+
+$output = $twig->render("Dear {first_name_userinput}, ", array("first_name_userinput" => user.first_name_userinput) );
+
+
+if a developer takes the above code and customize it according to self something like this:
+
+$output = $twig->render($_GET['custom_email'], array("first_name_userinput" => user.first_name_userinput) );
+
+
+#now how an attacker uses the above code for ssti:
+
+custom_email={{7*7}}
+
+this will evaluate the mathematic operation for attcker
+
+custom_email={{self}} : shows if any sandbox is present
+
+what is a sandbox env: it is used to mimic the production env. for testing new functionality on live websites
+
+
+# how to look for ssti in 3-4 steps
+
+1- detect
+
+2- identify
+
+3- exploit { Read -> Explore -> attack}
+
+
+# Detect - do it in 2 steps : 
+
+1- Plaintext context
+
+most template lang uses freedom of 'text' content: like 
+
+smarty=Hello {user.name}
+> output== Hello user1
+
+
+freemaker=Hello ${user.name}
+> output== Hello user1
+
+
+any=<b>Hello</b>
+
+
+# bypass for smarty and freemaker template-engines:
+
+smarty=Hello ${7*7}
+> output: Hello 49
+
+freemaker=Hello ${7*7}
+> output: Hello 49
+
+
+2- type 2 for Detect== Code context:
+
+#code context- user inputs may also be placed as a variable name:
+
+personal_greetings=username
+> output= Hello user01
+
+
+in the above case you can't easily get an xss vuln but the help of little ssti 
+you can gain xss here in the above template case!
+
+
+1-attempt== personal_greetings=username<tag>
+hello  [not worked]
+
+
+2-attempt== personal_greetings=username}}<tag>
+hello user01 <tag>
+
+
+
+----------------Detection part done!!!----------------------
+
+
+----------------Identify!!-----------------------------------
+
+if you sucessfully detected the ssti on a web-application NOW ITS TIME FOR IDENTIFYING 
+the template which is in use:
+
+
+eg: for a probe of ssti like this- {{7*'7'}} results of different template engines:
+
+twig- 49 
+
+Jinja2- 7777777
+
+niether- means no template is in use
+
+
+# how to approach for ssti and finding the template is use :
+
+${7*7}
+
+
+`hit` : a{*comment*}b -hit{temp-engine is smarty}
+		      -drops{ try[ ${"z".join("ab")} ] -hit{temp-engine is mako} -drops{temp-engine is unknown}
+
+
+`drops ${7*7}` :  try[ {{7*7}} -hit{ try[ {{'7*7'}} -hit[temp-engine is either Jinja2 or Twig maybe unknown]}
+
+	          -drops again: not-vulnrable
+
+
+-----------Final part Exploitation-----------------
+
+after the above two step{i.e: finding and identifying the ssti we need to read the documentation 
+	of that template }
+
+
+# how to read documentation of the identified template
+
+sections :
+
+- `For template authors` : this part of documentation section covering basic syntax
+
+- security consederations: 
+
+
+
+-------------not worthy above part---------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
