@@ -1,0 +1,82 @@
+#Serialization:
+
+its a process of converting complex data structures mainly objects and their feilds.
+into a 'flatter' format. for making it easy for data transfer.
+
+note: seralized data is sent and recived in form of `sequential stream of bytes!`
+
+#Deserialization:
+it's just restoring the fully functional replica of the object from the recived stream of bytes!
+
+programming languages provides native support for Serialization. some prefer {binary format} and some prefer {string format!}
+
+
+note:
+```
+to prevent any specific/private feild of any object getting seralized you need a mark declairation
+"transient" in the class declaration
+```
+
+# Insecure Deserialization:
+this is the case when user-controlled data is getting Deserialized by the website.
+
+this enables an attcker to manipulate the serialized object and make website deserialize the attacker
+desired object into the vuln webapplication.
+
+note: here an attacker can replace a serialized object with an object of an entirely different class.
+that's why this vuln is also k/a `object injection!`
+
+
+#PHP serialization format:
+eg- here user is an object:
+```
+ $user->name = "carlos";
+$user->isLoggedIn = true;
+```
+> When serialized, this object may look something like this:
+
+`O:4:"User":2:{s:4:"name":s:6:"carlos"; s:10:"isLoggedIn":b:1;}`
+
+note: in php there are pre-defined method for Serialization and Deserialization {i.e: serialize() and unserialize()}
+
+for bug hunting always look for the method used for Deserialization(which is unserialize() )
+
+# java serialization:
+it uses binary format for Serialization:
+
+> how to look for java serialized objects in the wild:
+- ac ed => hexdecimal
+- rO0 => b64
+
+for white-box testing: look for [java.io.Serializable] this is used for serialization and Deserialization.
+
+and look for `readObject()` this is used by java to `read and deserialize` data from input-stream!
+
+administrator
+
+
+#Magic Methods: surrounded by 2 underscores...!
+
+magic methods are special methods that are called automatically when certain conditions are met.
+
+There are several magic methods in  PHP. Every magic method follows certain rules –
+
+-   Every magic method starts with a double underscore (  __ ).
+
+-   They are predefined and neither can be created nor removed.
+
+-   Magic methods have reserved names and their name should not be used for other purposes.
+
+-   Magic methods are automatically called when certain criteria are met.
+
+
+Method Names	Return types	Condition of calling
+__construct()	NaN             This method gets called automatically every time the object
+                                of a particular class is created.
+
+The function of this magic method is the same as the constructor in any OOP language.
+__destruct()	NaN
+
+As the name suggests this method is called when the object is destroyed and no longer in use.
+
+Generally at the end of the program and end of the function.
