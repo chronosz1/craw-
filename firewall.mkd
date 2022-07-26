@@ -1,0 +1,426 @@
+# Introduction to Firewall
+
+The concept of the firewall was introduced to secure the communication process between various networks.
+
+A firewall is a software or a hardware device that examines the data from several networks and then either
+permits it or blocks it to communicate with your network and this process is governed by
+a set of predefined security guidelines.
+
+In this tutorial, we will explore the various aspects of the Firewall and its applications.
+
+> Definition:
+
+A firewall is a device or a combination of systems that supervises the flow of traffic between distinctive
+parts of the network. A firewall is used to guard the network against nasty people and prohibit
+their actions at predefined boundary levels.
+
+A firewall is not only used to protect the system from exterior threats but the threat can be internal
+as well.
+
+Therefore we need protection at each level of the hierarchy of networking systems.
+
+A good firewall should be sufficient enough to deal with both internal and external threats and
+be able to deal with malicious software such as worms from acquiring access to the network.
+
+It also provisions your system to stop forwarding unlawful data to another system.
+
+For Example, a firewall always exists between a private network and the Internet which is a public
+network thus filters packets coming in and out.
+
+> Firewall as a barrier between the Internet and LAN
+
+![e](./1.webp)
+
+---
+
+Selecting a precise firewall is critical in building up a secure networking system.
+
+Firewall provisions the security apparatus for allowing and restricting traffic, authentication,
+address translation, and content security.
+
+It ensures 365 *24*7 protection of the network from hackers. It is a one-time investment for any
+organization and only needs timely updates to function properly. By deploying a firewall there
+is no need for any panic in case of network attacks.
+
+# Software Vs Hardware Firewall
+
+![e](./2.webp)
+
+---
+
+Hardware firewall protects the entire network of an organization using it from external threats only.
+In case, if an employee of the organization is connected to the network via his laptop then he can’t
+avail the protection.
+
+On the other hand, software firewall provision host-based security as the software is installed on
+each of the devices connected to the network, thereby protecting the system from external as well
+as internal threats.
+
+It is most widely used by mobile users to digitally protect their handset from malicious attacks.
+
+# Network Threats
+
+A list of Network threats are briefed below:
+
+    Worms, denial of service (DoS), and Trojan horses are a few examples of network threats that
+    are used to demolish computer networking systems.
+
+    Trojan horse virus is a kind of malware that performs an assigned task in the system.
+    But actually, it was trying to illegally access the network resources.
+    These viruses if injected into your system give the hacker’s the right to hack your network.
+
+    These are very dangerous viruses as they can even cause your PC to crash and can remotely modify or
+    delete your crucial data from the system.
+
+    Computer worms are a type of malware program. They consume the bandwidth and speed of the
+    network to transmit copies of them to the other PCs of the network.
+    They harm the computers by corrupting or modifying the database of the computer entirely.
+
+    The worms are very dangerous as they can destroy the encrypted files and attach themselves with
+    e-mail and thus can be transmitted in the network through the internet.
+
+
+
+# Firewall Protection
+
+In small networks, we can make each of our network device secured by ensuring that all the software
+patches are installed, unwanted services are disabled,
+and security software are properly installed within it.
+
+In this situation, as also shown in the figure, the firewall software is mounted on each machine & server
+and configured in such a manner that only listed traffic can come in and out of the device.
+But this works efficiently in small-scale networks only.
+
+# Firewall Protection in Small Scale Network
+
+![e](./3.webp)
+
+---
+
+
+In a large-scale network, it is almost next to impossible to manually configure the firewall protection
+on each node.
+
+The centralized security system is a solution to provide a secure network to big networks.
+With the help of an example, it is shown in the below figure that the firewall solution is
+imposed with the router itself, and it becomes simple to handle security policies.
+
+The policies of traffic come in and out into the device and can be handled solely by one device.
+
+This makes the overall security system cost-effective.
+
+# Firewall Protection in Big Networks
+
+![e](./4.webp)
+
+---
+# Firewall and OSI Reference Model
+
+A firewall system can work on five layers of the OSI-ISO reference model.
+
+But most of them run at only four layers i.e. data-link layer, network layer, transport layer,
+and application layers.
+
+The number of layers envelops by a firewall is dependent upon the type of firewall used.
+
+Greater will be a count of layers it covers more efficient will be the firewall solution to deal with
+all kinds of security concerns.
+
+# Dealing with Internal Threats
+
+Most of the attack on the network occurs from inside the system so to deal with its Firewall system
+should be capable of securing from internal threats also.
+
+Few kinds of internal threats are described below:
+
+#1) Malicious cyber-attacks are the most common type of internal attack. The system administrator or any employee from the IT department who is having access to the network system can plant some viruses to steal crucial network information or to damage the networking system.
+
+The solution to deal with it is to monitor the activities of every employee and guard the internal network by using multiple layers of the password to each of the servers. The system can also be protected by giving access to the system to the least of the employees as possible.
+
+#2) Any of the host computers of the internal network of the organization can download malicious internet content with a lack of knowledge of downloading the virus also with it. Thus the host systems should have limited access to the internet. All unnecessary browsing should be blocked.
+
+#3) Information leakage from any of the host PC through pen drives, hard disk, or CD-ROM is also a network threat to the system. This can lead to crucial database leakage of the organization to the outer world or competitors. This can be controlled by disabling the USB ports of host devices so that they can’t take out any data from the system.
+
+
+# DMZ
+
+A demilitarized zone (DMZ) is used by a majority of firewall systems to guard assets and resources.
+DMZ’s are deployed to give external users access to resources like e-mail servers, DNS servers,
+and web pages without uncovering the internal network.
+
+It behaves as a buffer between distinctive segments in the network.
+
+Each region in the firewall system is allocated a security level.
+
+For Example, low, medium, and high. Normally traffic flows from a higher level to a lower level.
+
+But for traffic to move from a lower to a higher level, a different set of filtering rules are deployed.
+
+For permitting the traffic to move from a lower security level to a higher security level, one
+should be precise about the kind of traffic permitted.
+
+By being precise we are unlocking the firewall system only for that traffic which is essential,
+all other kinds of traffic will be blocked by configuration.
+
+A firewall is deployed to separate distinctive parts of the network.
+
+The various interfaces are as follows:
+
+    Link to the Internet, assigned with the lowest level of security.
+    A link to DMZ assigned a medium-security because of the presence of servers.
+    A link to the organization, situated at the remote end, assigned medium security.
+    The highest security is assigned to the internal network.
+
+# Firewall Protection with DMS
+
+![ek](./5.webp)
+
+---
+
+Rules assigned to the organization are:
+
+    High to low-level access is allowed
+    Low to high-level access is not allowed
+    Equivalent level access also not allowed
+
+By using the above set of rules, the traffic allowed to automatically flow through the firewall is:
+
+    Internal devices to DMZ, remote organization, and the internet.
+    DMZ to the remote organization and the internet.
+
+Any other kind of traffic flow is blocked. The benefit of such design is that since the internet
+and the remote organization are assigned the equivalent kind of security levels, traffic
+from the Internet not able to destine organization which itself enhances
+protection and organization will not be able to use the internet at free of cost( it saves money).
+
+Another benefit is that it provides layered security thus if a hacker wants to hack the internal resources
+then it first has to hack the DMZ. Hacker’s task becomes tougher which in turn makes
+the system much more secure.
+
+> Components of a Firewall System
+
+The building blocks of a good firewall system are as follows:
+
+    Perimeter router
+    Firewall
+    VPN
+    IDS
+
+#1) Perimeter Router
+
+The main reason for using it is to provide a link to a public networking system like the internet,
+or a distinctive organization. It performs the routing of data packets by following an appropriate routing
+protocol.
+
+It also provisions the filtering of packets and addresses translations.
+
+#2) Firewall
+
+As discussed earlier also its main task is to provisions distinctive levels of security and
+supervises traffic among each level. Most of the firewall exists near the router to provide
+security from external threats but sometimes present in the internal network also to protect from
+internal attacks.
+
+#3) VPN
+
+Its function is to provisions a secured connection among two machines or networks or a machine and a network.
+This consists of encryption, authentication, and, packet-reliability assurance.
+It provisions the secure remote access of the network, thereby connecting two WAN networks on
+the same platform while not being physically connected.
+
+#4) IDS
+
+Its function is to identify, preclude, investigate, and resolve unauthorized attacks.
+A hacker can attack the network in various ways. It can execute a DoS attack or an attack from
+the backside of the network through some unauthorized access.
+
+An IDS solution should be smart enough to deal with these types of attacks.
+
+IDS solution is of two kinds, network-based and host-based. A network-based IDS solution should be
+skilled in such a way whenever an attack is spotted, can access the firewall system and after logging
+into it can configure an efficient filter that can restrict the unwanted traffic.
+
+A host-based IDS solution is a kind of software that runs on a host device such as a laptop or server,
+which spots the threat against that device only. IDS solution should inspect network threats
+closely and report them timely and should take necessary actions against the attacks.
+
+> Component Placement
+
+We have discussed a few of the major building blocks of the firewall system.
+Now let’s discuss the placement of these components.
+
+Below with the help of an example, I am illustrating the design of the network. But it can’t be said
+completely that it is the overall secure network design because every design can have some constraints.
+
+The perimeter router having fundamental filtering features is used when traffic penetrates the network.
+An IDS component is placed to identify attacks that the perimeter router was incapable to filter out.
+
+The traffic thereby goes through the firewall. The firewall has initiate three levels of security,
+low for the Internet means external side, medium for DMZ, and high for the internal network.
+
+The rule followed is to permit the traffic from the internet to the webserver only.
+
+The rest of the traffic flow from lower to the higher side is restricted, though, higher to lower traffic
+flow is allowed, so that the administrator residing on the internal network for logging onto the DMZ server.
+
+# Overall Firewall System Design Example
+
+![d](./6.webp)
+
+---
+
+An internal router is also implemented in this design to route the packets internally and perform filtering actions.
+
+The advantage of this design is that it having three layers of security, the packet filtering perimeter router, IDS, and the firewall.
+
+The disadvantage of this set-up is that no IDS occurs in the internal network thus can’t easily prevent internal attacks.
+
+Important Designing Facts:
+
+    A Packet-filtering firewall should be used at the boundary of the network to give enhanced security.
+
+    Every server having exposure to a public network such as the Internet will be placed in DMZ.
+    Servers having crucial data will be equipped with host-based firewall software within them.
+    In addition to these on servers, all unwanted services should be disabled.
+
+    If your network is having critical database servers such as HLR server, IN, and SGSN which is used in mobile operations,
+    then multiple DMZ will be deployed.
+
+    If external sources such as far-end organizations want to access your server placed in an internal network of
+    security system then use VPN.
+
+    For crucial internal sources, such as R&D or financial sources, IDS should be used to monitor and deal with internal attacks.
+    By imposing levels of security separately, extra security can be provided to the internal network.
+
+    For e-mail services, all outgoing emails should be pass through the DMZ e-mail server firstly and then some extra security
+    software so that internal threats can be avoided.
+
+    For incoming e-mail, in addition to the DMZ server, antivirus, spam, and host-based software should be installed and
+    run on the server every time a mail enters the server.
+
+# Firewall Administration and Management
+
+Now we have chosen the building blocks of our firewall system. Now the time has come to configure the security
+rules onto a network system.
+
+Command-line interface (CLI) and graphic user interface (GUI) are used to configure firewall software.
+For Example, Cisco products support both kinds of configuration methods.
+
+Nowadays in most networks, the Security device manager (SDM) which is also a product of Cisco is used to configure routers,
+Firewalls, and VPN attributes.
+
+To implement a firewall system an efficient administration is very essential to run the process smoothly.
+The people managing the security system must be masters in their work as there is no scope for human error.
+
+Any type of configuration errors should be avoided. Whenever configuration updates will be done,
+the administrator must examine and double-check the whole process so that leaving no scope for loopholes and hackers to attack it.
+The administrator should use a software tool to examine the alterations done.
+
+Any major configuration changes in firewall systems can’t be directly applied to the ongoing big networks as if
+failed can lead to a big loss to the network and directly allowing unwanted traffic to enter the system.
+Thus firstly it should be performed in the lab and examine the outcomes if the results are found ok then we
+can implement the changes in the live network.
+
+#Firewall Categories
+
+Based on the filtering of traffic there are many categories of the firewall, some are explained below:
+
+#1) Packet Filtering Firewall
+
+It is a kind of router which is having the ability to filter the few of the substance of the data packets.
+When using packet-filtering, the rules are classified on the firewall.
+These rules find out from the packets which traffic is permitted and which are not.
+
+#2) Stateful Firewall
+
+It is also called as dynamic packet filtering, it inspects the status of active connections and uses that data
+to find out which of the packets should be permitted through the firewall and which are not.
+
+The firewall inspects the packet down to the application layer. By tracing the session data like IP address and
+port number of the data packet it can provide much strong security to the network.
+
+It also inspects both incoming and outgoing traffic thus hackers found it difficult to interfere in the network using this firewall.
+
+#3) Proxy Firewall
+
+These are also known as application gateway firewalls. The stateful firewall is unable to protect the system from HTTP based attacks.
+Therefore proxy firewall is introduced in the market.
+
+It includes the features of stateful inspection plus having the capability of closely analyzing application layer protocols.
+
+Thus it can monitor traffic from HTTP and FTP and find out the possibility of attacks.
+Thus firewall behaves as a proxy means the client initiates a connection with the firewall and the firewall in return
+initiates a solo link with the server on the client’s side.
+
+# Types of Firewall Software
+
+The few of the most popular firewall software that the organizations use to protect their systems are mentioned below:
+
+#1) Comodo Firewall
+
+Virtual Internet browsing, to block unwanted pop-up ads, and customizing DNS servers are the common features of this Firewall.
+Virtual Kiosk is used to block some procedure and programs by absconding and penetrating the network.
+
+In this firewall, apart from following the long process for defining ports and other programs to allow and block,
+any program can be allowed and blocked by just browsing for the program and clicking on the desired output.
+
+Comodo killswitch is also an enhanced feature of this firewall which illustrates all ongoing processes and makes it very easy to
+block any unwanted program.
+
+#2) AVS Firewall
+
+It is very simple to implement. It guards your system against nasty registry amendments, pop-up windows, and unwanted advertisements.
+We can also modify the URL’s for ads anytime and can block them also.
+
+It’s also having the feature of a Parent control, which is a part of permitting access to a precise group of websites only.
+
+It is used in Windows 8, 7, Vista, and XP.
+
+#3) Netdefender
+
+Here we can easily outline the source and destination IP address, port number, and protocol that are permitted and not
+permitted in the system. We can allow and block FTP for being deployed and restricted in any network.
+
+It also has a port scanner, which can visualize which can be used for traffic flow.
+
+#4) PeerBlock
+
+Despite blocking individual class of programs defined in the computer it blocks the overall
+IP addresses class fall in a particular category.
+
+It deploys this feature by blocking both incoming and outgoing traffic by defining a set of IP addresses that are barred.
+Therefore the network or computer using that set of IPs can’t access the network and also the internal
+network can’t send the outgoing traffic to those blocked programs.
+
+#5) Windows Firewall
+
+The most frequent firewall used by Windows 7 users is this firewall. It provisions the access and restriction
+of traffic and communication between networks or a network or a device by analyzing IP address and port number.
+
+It by default permits all outbound traffic but allows only those inbound traffic which is defined.
+
+#6) Juniper Firewall
+
+The juniper in itself a networking organization and design various types of routers and firewall filters also.
+In a live network like Mobile service providers uses Juniper made firewalls to protect their network services
+from different types of threats.
+
+They guard the network routers and extra incoming traffic and unreceptive attacks from
+external sources that can interrupt network services and handle which traffic to be forwarded from which of router interfaces.
+
+It implements one input and one output firewall filter to each of the incoming and outgoing physical interfaces.
+This filters out the unwanted data packets following the rules defined at both incoming and outgoing interfaces.
+
+According to default firewall configuration settings, which packets to be accepted and which to be discarded is decided.
+
+#Conclusion
+
+From the above description about various aspects of the firewall, we will conclude that to overcome the external
+and internal network attacks the concept of the firewall has been introduced.
+
+The firewall can be hardware or software which by following a certain set of rules will guard our networking system from the
+virus and other types of malicious attacks.
+
+We have also explored here the different categories of the firewall, components of the firewall,
+designing and implementation of a firewall, and then some of the famous firewall software we used to
+deploy in the networking industry.
