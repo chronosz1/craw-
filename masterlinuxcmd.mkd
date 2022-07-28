@@ -1,0 +1,1699 @@
+[LINUX COMMANDS]{.ul}
+
+-   [[adduser/addgroup]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#adduser/addgroup)
+
+-   [[agetty]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#agetty)
+
+-   [[alias]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#alias)
+
+-   [[anacron]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#anacron)
+
+-   [[apropos]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#apropos)
+
+-   [[apt]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#apt)
+
+-   [[apt-get]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#apt-get)
+
+-   [[aptitude]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#aptitude)
+
+-   [[arch]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#arch)
+
+-   [[arp]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#arp)
+
+-   [[at]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#at)
+
+-   [[atq]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#atq)
+
+-   [[atrm]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#atrm)
+
+-   [[awk]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#awk)
+
+-   [[batch]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#batch)
+
+-   [[basename]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#basename)
+
+-   [[bc]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#bc)
+
+-   [[bg]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#bg)
+
+-   [[bzip]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#bzip)
+
+-   [[cal]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#cal)
+
+-   [[cat]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#cat)
+
+-   [[chgrp]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#chgrp)
+
+-   [[chmod]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#chmod)
+
+-   [[chown]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#chown)
+
+-   [[cksum]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#cksum)
+
+-   [[clear]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#clear)
+
+-   [[cmp]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#cmp)
+
+-   [[comm]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#comm)
+
+-   [[cp]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#cp)
+
+-   [[date]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#date)
+
+-   [[dd]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#dd)
+
+-   [[df]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#df)
+
+-   [[diff]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#diff)
+
+-   [[dir]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#dir)
+
+-   [[dmidecode]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#dmidecode)
+
+-   [[du]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#du)
+
+-   [[echo]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#echo)
+
+-   [[eject]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#eject)
+
+-   [[env]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#env)
+
+-   [[exit]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#exit)
+
+-   [[expr]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#expr)
+
+-   [[factor]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#factor)
+
+-   [[find]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#find)
+
+-   [[free]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#free)
+
+-   [[grep]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#grep)
+
+-   [[groups]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#groups)
+
+-   [[gzip]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#gzip)
+
+-   [[gunzip]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#gunzip)
+
+-   [[head]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#head)
+
+-   [[history]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#history)
+
+-   [[hostname]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#hostname)
+
+-   [[hostnamectl]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#hostnamectl)
+
+-   [[hwclock]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#hwclock)
+
+-   [[hwinfo]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#hwinfo)
+
+-   [[id]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#id)
+
+-   [[ifconfig]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#ifconfig)
+
+-   [[ionice]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#ionice)
+
+-   [[iostat]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#iostat)
+
+-   [[ip]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#ip)
+
+-   [[iptables]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#iptables)
+
+-   [[iw]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#iw)
+
+-   [[iwlist]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#iwlist)
+
+-   [[kill]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#kill)
+
+-   [[killall]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#killall)
+
+-   [[kmod]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#kmod)
+
+-   [[last]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#last)
+
+-   [[ln]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#ln)
+
+-   [[locate]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#locate)
+
+-   [[login]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#login)
+
+-   [[ls]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#ls)
+
+-   [[lshw]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#lshw)
+
+-   [[lscpu]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#lscpu)
+
+-   [[lsof]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#lsof)
+
+-   [[lsusb]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#lsusb)
+
+-   [[man]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#man)
+
+-   [[mdsum]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#mdsum)
+
+-   [[mkdir]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#mkdir)
+
+-   [[more]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#more)
+
+-   [[mv]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#mv)
+
+-   [[nano]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#nano)
+
+-   [[nc/netcat]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#nc/netcat)
+
+-   [[netstat]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#netstat)
+
+-   [[nice]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#nice)
+
+-   [[nmap]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#nmap)
+
+-   [[nproc]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#nproc)
+
+-   [[openssl]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#openssl)
+
+-   [[passwd]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#passwd)
+
+-   [[pidof]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#pidof)
+
+-   [[ping]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#ping)
+
+-   [[ps]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#ps)
+
+-   [[pstree]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#pstree)
+
+-   [[pwd]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#pwd)
+
+-   [[rdiff-backup]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#rdiff-backup)
+
+-   [[reboot]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#reboot)
+
+-   [[rename]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#rename)
+
+-   [[rm]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#rm)
+
+-   [[rmdir]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#rmdir)
+
+-   [[scp]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#scp)
+
+-   [[shutdown]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#shutdown)
+
+-   [[sleep]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#sleep)
+
+-   [[sort]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#sort)
+
+-   [[split]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#split)
+
+-   [[ssh]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#ssh)
+
+-   [[stat]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#stat)
+
+-   [[su]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#su)
+
+-   [[sudo]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#sudo)
+
+-   [[sum]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#sum)
+
+-   [[tac]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#tac)
+
+-   [[tail]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#tail)
+
+-   [[talk]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#talk)
+
+-   [[tar]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#tar)
+
+-   [[tee]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#tee)
+
+-   [[tree]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#tree)
+
+-   [[time]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#time)
+
+-   [[top]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#top)
+
+-   [[touch]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#touch)
+
+-   [[tr]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#tr)
+
+-   [[uname]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#uname)
+
+-   [[uniq]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#uniq)
+
+-   [[uptime]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#uptime)
+
+-   [[users]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#users)
+
+-   [[vim/vi]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#vim/vi)
+
+-   [[w]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#w)
+
+-   [[wall]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#wall)
+
+-   [[watch]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#watch)
+
+-   [[wc]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#wc)
+
+-   [[wget]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#wget)
+
+-   [[whatis]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#whatis)
+
+-   [[which]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#which)
+
+-   [[who]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#who)
+
+-   [[whereis]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#whereis)
+
+-   [[xargs]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#xargs)
+
+-   [[yes]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#yes)
+
+-   [[youtube-dl]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#youtube-dl)
+
+-   [[zcmp/zdiff]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#zcmp/zdiff)
+
+-   [[zip]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#zip)
+
+-   [[zz]{.ul}](https://www.tecmint.com/linux-commands-cheat-sheet/#zz)
+
+\$ man command-name
+
+**adduser/addgroup Command**
+
+The **adduser** and **addgroup** commands are used to add a user and
+group to the system respectively according to the default configuration
+specified in **/etc/adduser.conf** file.
+
+\$ sudo adduser tecmint
+
+**agetty Command**
+
+**agetty** is a program which manages physical or virtual terminals and
+is invoked by **init**. Once it detects a connection, it opens a tty
+port, asks for a user's login name and calls up
+the **/bin/login** command. **Agetty** is a substitute of
+Linux **getty**:
+
+\$ agetty -L 9600 ttyS1 vt100
+
+**alias Command**
+
+**alias** is a useful shell built-in command for creating aliases
+(shortcut) to a Linux command on a system. It is helpful for creating
+new/custom commands from existing Shell/Linux commands (including
+options):
+
+\$ alias home=\'cd /home/tecmint/public_html\'
+
+The above command will create an alias
+called **home** for **/home/tecmint/public_html** directory, so whenever
+you type **home** in the terminal prompt, it will put you in
+the **/home/tecmint/public_html** directory.
+
+**anacron Command**
+
+[[anacron]{.ul}](https://www.tecmint.com/cron-vs-anacron-schedule-jobs-using-anacron-on-linux/) is
+a Linux facility used to run commands periodically with a frequency
+defined in days, weeks and months.
+
+Unlike its sister [cron]{.ul}; it assumes that a system will not run
+continuously, therefore if a scheduled job is due when the system is
+off, it's run once the machine is powered on.
+
+**apropos Command**
+
+**apropos** command is used to [[search and display a short man page
+description]{.ul}](https://www.tecmint.com/find-linux-command-description-and-location/) of
+a command/program as follows.
+
+\$ apropos adduser
+
+**apt Command**
+
+[[apt]{.ul}](https://www.tecmint.com/apt-advanced-package-command-examples-in-ubuntu/) tool
+is a relatively new higher-level package manager for Debian/Ubuntu
+systems:
+
+\$ sudo apt update
+
+**apt-get Command**
+
+[[apt-get]{.ul}](https://www.tecmint.com/useful-basic-commands-of-apt-get-and-apt-cache-for-package-management/) is
+a powerful and free front-end package manager for Debian/Ubuntu systems.
+It is used to install new software packages, remove available software
+packages, upgrade existing software packages as well as upgrade entire
+operating system.
+
+\$ sudo apt-get update
+
+**aptitude Command**
+
+**aptitude** is a powerful text-based interface to the Debian GNU/Linux
+package management system. Like **apt-get** and **apt**; it can be used
+to install, remove or upgrade software packages on a system.
+
+\$ sudo aptitude update
+
+**arch Command**
+
+**arch** is a simple command for displaying machine architecture or
+hardware name (similar to **uname -m**):
+
+\$ arch
+
+**arp Command**
+
+**ARP** (**Address Resolution Protocol**) is a protocol that maps IP
+network addresses of a network neighbor with the hardware (MAC)
+addresses in an IPv4 network.
+
+You can use it as below to find all alive hosts on a network:
+
+\$ sudo arp-scan \--interface=enp2s0 \--localnet
+
+**at Command**
+
+[[at
+command]{.ul}](https://www.tecmint.com/linux-cron-alternative-at-command-to-schedule-tasks/) is
+used to schedule tasks to run in a future time. It's an alternative
+to **cron** and **anacron**, however, it runs a task once at a given
+future time without editing any config files:
+
+For example, to shutdown the system at 23:55 today, run:
+
+\$ sudo echo \"shutdown -h now\" \| at -m 23:55
+
+**atq Command**
+
+**atq** command is used to view jobs in **at command** queue:
+
+\$ atq
+
+**atrm Command**
+
+**atrm** command is used to remove/deletes jobs (identified by their job
+number) from at command queue:
+
+\$ atrm 2
+
+**awk Command**
+
+[[Awk]{.ul}](https://www.tecmint.com/category/awk-command/) is a
+powerful programming language created for text processing and generally
+used as a data extraction and reporting tool.
+
+\$ awk \'//{print}\'/etc/hosts
+
+**batch Command**
+
+**batch** is also used to schedule tasks to run a future time, similar
+to the [[at
+command]{.ul}](https://www.tecmint.com/linux-cron-alternative-at-command-to-schedule-tasks/).
+
+**basename Command**
+
+**basename** command helps to print the name of a file stripping of
+directories in the absolute path:
+
+\$ basename bin/findhosts.sh
+
+**bc Command**
+
+**bc** is a simple yet powerful and arbitrary precision CLI calculator
+language which can be used like this:
+
+\$ echo 20.05 + 15.00 \| bc
+
+**bg Command**
+
+**bg** is a command used to send a process to the background.
+
+\$ tar -czf home.tar.gz .
+
+\$ bg
+
+\$ jobs
+
+**bzip2 Command**
+
+[[bzip2]{.ul}](https://www.tecmint.com/linux-compress-decompress-bz2-files-using-bzip2/) command
+is used to compress or decompress file(s).
+
+\$ bzip2 -z filename \#Compress
+
+\$ bzip2 -d filename.bz2 \#Decompress
+
+**cal Command**
+
+The **cal** command print a calendar on the standard output.
+
+\$ cal
+
+**cat Command**
+
+[[cat
+command]{.ul}](https://www.tecmint.com/13-basic-cat-command-examples-in-linux/) is
+used to view contents of a file or concatenate files, or data provided
+on standard input, and display it on the standard output.
+
+\$ cat file.txt
+
+**chgrp Command**
+
+**chgrp** command is used to change the group ownership of a file.
+Provide the new group name as its first argument and the name of file as
+the second argument like this:
+
+\$ chgrp tecmint users.txt
+
+**chmod Command**
+
+**chmod** command is used to change/update file access permissions like
+this.
+
+\$ chmod +x sysinfo.sh
+
+**chown Command**
+
+**chown** command changes/updates the user and group ownership of a
+file/directory like this.
+
+\$ chmod -R www-data:www-data /var/www/html
+
+**cksum Command**
+
+**cksum** command is used to display the CRC checksum and byte count of
+an input file.
+
+\$ cksum README.txt
+
+**clear Command**
+
+**clear** command lets you clear the terminal screen, simply type.
+
+\$ clear
+
+**cmp Command**
+
+**cmp** performs a byte-by-byte comparison of two files like this.
+
+\$ cmp file1 file2
+
+**comm Command**
+
+**comm** command is used to compare two sorted files line-by-line as
+shown below.
+
+\$ comm file1 file2
+
+**cp Command**
+
+**cp** command is used for copying files and directories from one
+location to another.
+
+\$ cp /home/tecmint/file1 /home/tecmint/Personal/
+
+**date Command**
+
+**date** command displays/sets the system date and time like this.
+
+\$ date
+
+\$ date \--set=\"8 JUN 2017 13:00:00\"
+
+**dd Command**
+
+**dd** command is used for copying files, converting and formatting
+according to flags provided on the command line. It can strip headers,
+extracting parts of binary files and so on.
+
+The example below shows creating a boot-able USB device:
+
+\$ dd if=/home/tecmint/kali-linux-1.0.4-i386.iso of=/dev/sdc1 bs=512M;
+sync
+
+**df Command**
+
+[[df
+command]{.ul}](https://www.tecmint.com/how-to-check-disk-space-in-linux/) is
+used to show file system disk space usage as follows.
+
+\$ df -h
+
+**diff Command**
+
+[[diff
+command]{.ul}](https://www.tecmint.com/compare-find-difference-between-two-directories-in-linux/) is
+used to compare two files line by line. It can also be used to [[find
+the difference between two
+directories]{.ul}](https://www.tecmint.com/best-linux-file-diff-tools-comparison/) in
+Linux like this:
+
+\$ diff file1 file2
+
+Some useful diff tools for Linux: [[8 Best File Comparison and
+Difference (Diff) Tools for
+Linux]{.ul}](https://www.tecmint.com/best-linux-file-diff-tools-comparison/)
+
+**dir Command**
+
+[[dir
+command]{.ul}](https://www.tecmint.com/linux-dir-command-usage-with-examples/) works
+like Linux [[ls
+command]{.ul}](https://www.tecmint.com/tag/linux-ls-command/), it lists
+the contents of a directory.
+
+\$ dir
+
+**dmidecode Command**
+
+[[dmidecode
+command]{.ul}](https://www.tecmint.com/how-to-get-hardware-information-with-dmidecode-command-on-linux/) is
+a tool for retrieving hardware information of any Linux system. It dumps
+a computer's DMI (a.k.a SMBIOS) table contents in a human-readable
+format for easy retrieval.
+
+To view your system hardware info, you can type:
+
+\$ sudo dmidecode \--type system
+
+**du Command**
+
+[[du
+command]{.ul}](https://www.tecmint.com/check-linux-disk-usage-of-files-and-directories/) is
+used to show disk space usage of files present in a directory as well as
+its sub-directories as follows.
+
+\$ du /home/aaronkilik
+
+**echo Command**
+
+[[echo
+command]{.ul}](https://www.tecmint.com/echo-command-in-linux/) prints a
+text of line provided to it.
+
+\$ echo "This is TecMint - Linux How Tos"
+
+**eject Command**
+
+**eject command** is used to eject removable media such as DVD/CD ROM or
+floppy disk from the system.
+
+\$ eject /dev/cdrom
+
+\$ eject /mnt/cdrom/
+
+\$ eject /dev/sda
+
+**env Command**
+
+**env command** lists all the current environment variables and used to
+set them as well.
+
+\$ env
+
+**exit Command**
+
+**exit command** is used to exit a shell like so.
+
+\$ exit
+
+**expr Command**
+
+**expr command** is used to calculate an expression as shown below.
+
+\$ expr 20 + 30
+
+**factor Command**
+
+**factor command** is used to show the prime factors of a number.
+
+\$ factor 10
+
+**find Command**
+
+[[find
+command]{.ul}](https://www.tecmint.com/35-practical-examples-of-linux-find-command/) lets
+you search for files in a directory as well as its sub-directories. It
+searches for files by attributes such as permissions, users, groups,
+file type, date, size and other possible criteria.
+
+\$ find /home/tecmint/ -name tecmint.txt
+
+-   
+
+**free Command**
+
+[[free
+command]{.ul}](https://www.tecmint.com/check-memory-usage-in-linux/) shows
+the system memory usage (free, used, swapped, cached, etc.) in the
+system including swap space. Use the -h option to display output in
+human friendly format.
+
+\$ free -h
+
+-   
+
+**grep Command**
+
+[[grep
+command]{.ul}](https://www.tecmint.com/12-practical-examples-of-linux-grep-command/) searches
+for a specified pattern in a file (or files) and displays in output
+lines containing that pattern as follows.
+
+\$ grep 'tecmint' domain-list.txt
+
+**groups Command**
+
+**groups command** displays all the names of groups a user is a part of
+like this.
+
+\$ groups
+
+\$ groups tecmint
+
+**gzip Command**
+
+[[Gzip]{.ul}](https://www.tecmint.com/increase-nginx-performance-enable-gzip-compression-module/) helps
+to compress a file, replaces it with one having a .gz extension as shown
+below:
+
+\$ gzip passwds.txt
+
+\$ cat file1 file2 \| gzip \> foo.gz
+
+**gunzip Command**
+
+**gunzip** expands or restores files compressed with **gzip** command
+like this.
+
+\$ gunzip foo.gz
+
+**head Command**
+
+[[head
+command]{.ul}](https://www.tecmint.com/view-contents-of-file-in-linux/) is
+used to show first lines (10 lines by default) of the specified file or
+stdin to the screen:
+
+\# ps -eo pid,ppid,cmd,%mem,%cpu \--sort=-%mem \| head
+
+**history Command**
+
+[[history
+command]{.ul}](https://www.tecmint.com/history-command-examples/) is
+used to show previously used commands or to get info about command
+executed by a user.
+
+\$ history
+
+-   
+
+**hostname Command**
+
+[[hostname
+command]{.ul}](https://www.tecmint.com/set-hostname-permanently-in-linux/) is
+used to print or set system hostname in Linux.
+
+\$ hostname
+
+\$ hostname NEW_HOSTNAME
+
+**hostnamectl Command**
+
+[[hostnamectl
+command]{.ul}](https://www.tecmint.com/set-hostname-permanently-in-linux/) controls
+the system hostname under systemd. It is used to print or modify the
+system hostname and any related settings:
+
+\$ hostnamectl
+
+\$ sudo hostnamectl set-hostname NEW_HOSTNAME
+
+**hwclock**
+
+**hwclock** is a tool for managing the system hardware clock; read or
+set the hardware clock (RTC).
+
+\$ sudo hwclock
+
+\$ sudo hwclock \--set \--date 8/06/2017
+
+**hwinfo Command**
+
+[[hwinfo]{.ul}](https://www.tecmint.com/check-linux-cpu-information/) is
+used to probe for the hardware present in a Linux system like this.
+
+\$ hwinfo
+
+**id Command**
+
+**id command** shows user and group information for the current user or
+specified username as shown below.
+
+\$ id tecmint
+
+**ifconfig Command**
+
+[[ifconfig
+command]{.ul}](https://www.tecmint.com/ifconfig-command-examples/) is
+used to configure a Linux systems network interfaces. It is used to
+configure, view and control network interfaces.
+
+\$ ifconfig
+
+\$ sudo ifconfig eth0 up
+
+\$ sudo ifconfig eth0 down
+
+\$ sudo ifconfig eth0 172.16.25.125
+
+**ionice Command**
+
+[[ionice
+command]{.ul}](https://www.tecmint.com/delete-huge-files-in-linux/) is
+used to set or view process I/O scheduling class and priority of the
+specified process.
+
+If invoked without any options, it will query the current I/O scheduling
+class and priority for that process:
+
+\$ ionice -c 3 rm /var/logs/syslog
+
+**iostat Command**
+
+[[iostat]{.ul}](https://www.tecmint.com/linux-performance-monitoring-with-vmstat-and-iostat-commands/) is
+used to show CPU and input/output statistics for devices and partitions.
+It produces useful reports for updating system configurations to help
+balance the input/output load between physical disks.
+
+\$ iostat
+
+**ip Command**
+
+[[ip command]{.ul}](https://www.tecmint.com/ip-command-examples/) is
+used to display or manage routing, devices, policy routing and tunnels.
+It also works as a replacement for well known [[ifconfig
+command]{.ul}](https://www.tecmint.com/ifconfig-command-examples/).
+
+This command will assign an IP address to a specific interface (eth1 in
+this case).
+
+\$ sudo ip addr add 192.168.56.10 dev eth1
+
+**iptables Command**
+
+[[iptables is a terminal based
+firewall]{.ul}](https://www.tecmint.com/linux-iptables-firewall-rules-examples-commands/) for
+managing incoming and outgoing traffic via a set of configurable table
+rules.
+
+The command below is used to check existing rules on a system (using it
+may require root privileges).
+
+\$ sudo iptables -L -n -v
+
+**iw Command**
+
+**iw command** is used to manage wireless devices and their
+configuration.
+
+\$ iw list
+
+**iwlist Command**
+
+**iwlist command** displays detailed wireless information from a
+wireless interface. The command below enables you to get detailed
+information about the **wlp1s0** interface.
+
+\$ iwlist wlp1s0 scanning
+
+**kill Command**
+
+[[kill
+command]{.ul}](https://www.tecmint.com/how-to-kill-a-process-in-linux/) is
+used to kill a process using its PID by sending a signal to it (default
+signal for kill is TERM).
+
+\$ kill -p 2300
+
+\$ kill -SIGTERM -p 2300
+
+**killall Command**
+
+[[killall
+command]{.ul}](https://www.tecmint.com/how-to-kill-a-process-in-linux/) is
+used to kill a process by its name.
+
+\$ killall firefox
+
+**kmod Command**
+
+**kmod command** is used to manage Linux kernel modules. To list all
+currently loaded modules, type.
+
+\$ kmod list
+
+**last Command**
+
+**last command** display a listing of last logged in users.
+
+\$ last
+
+**ln Command**
+
+**ln command** is used to create a soft link between files using
+the -s flag like this.
+
+\$ ln -s /usr/bin/lscpu cpuinfo
+
+**locate Command**
+
+[[locate
+command]{.ul}](https://www.tecmint.com/linux-locate-command-practical-examples/) is
+used to find a file by name. The locate utility works better and faster
+than it's **find** counterpart.
+
+The command below will search for a file by its exact name (not
+\*name\*):
+
+\$ locate -b \'\\domain-list.txt\'
+
+**login Command**
+
+**login command** is used to create a new session with the system.
+You'll be asked to provide a username and a password to login as below.
+
+\$ sudo login
+
+**ls Command**
+
+[[ls
+command]{.ul}](https://www.tecmint.com/15-basic-ls-command-examples-in-linux/) is
+used to list contents of a directory. It works more or less like [dir
+command]{.ul}.
+
+The -l option enables long listing format like this.
+
+\$ ls -l file1
+
+**lshw Command**
+
+[[lshw
+command]{.ul}](https://www.tecmint.com/commands-to-collect-system-and-hardware-information-in-linux/) is
+a minimal tool to get detailed information on the hardware configuration
+of the machine, invoke it with superuser privileges to get a
+comprehensive information.
+
+\$ sudo lshw
+
+**lscpu Command**
+
+[[lscpu
+command]{.ul}](https://www.tecmint.com/check-linux-cpu-information/) displays
+system's CPU architecture information (such as number of CPUs, threads,
+cores, sockets, and more).
+
+\$ lscpu
+
+**lsof Command**
+
+[[lsof
+command]{.ul}](https://www.tecmint.com/10-lsof-command-examples-in-linux/) displays
+information related to files opened by processes. Files can be of any
+type, including regular files, directories, block special files,
+character special files, executing text reference, libraries, and
+stream/network files.
+
+To view files opened by a specific user's processes, type the command
+below.
+
+\$ lsof -u tecmint
+
+**lsusb Command**
+
+[[lsusb
+command]{.ul}](https://www.tecmint.com/commands-to-collect-system-and-hardware-information-in-linux/) shows
+information about USB buses in the system and the devices connected to
+them like this.
+
+\$ lsusb
+
+**man Command**
+
+**man command** is used to view the on-line reference manual pages for
+commands/programs like so.
+
+\$ man du
+
+\$ man df
+
+**md5sum Command**
+
+[[md5sum
+command]{.ul}](https://www.tecmint.com/check-verify-md5sum-packages-files-in-linux/) is
+used to [[compute and print the MD5 message digest of a
+file]{.ul}](https://www.tecmint.com/generate-verify-check-files-md5-checksum-linux/).
+If run without arguments, debsums checks every file on your system
+against the stock md5sum files:
+
+\$ sudo debsums
+
+**mkdir Command**
+
+[[mkdir
+command]{.ul}](https://www.tecmint.com/mkdir-tar-and-kill-commands-in-linux/) is
+used to create single or more directories, if they do not already exist
+(this can be overridden with the -p option).
+
+\$ mkdir tecmint-files
+
+OR
+
+\$ mkdir -p tecmint-files
+
+**more Command**
+
+[[more
+command]{.ul}](https://www.tecmint.com/linux-more-command-and-less-command-examples/) enables
+you to view through relatively lengthy text files one screenful at a
+time.
+
+\$ more file.txt
+
+Check difference between **more** and **less** command and [[Learn Why
+'less' is Faster Than 'more'
+Command]{.ul}](https://www.tecmint.com/linux-more-command-and-less-command-examples/)
+
+**mv Command**
+
+**mv command** is used to [[rename files or
+directories]{.ul}](https://www.tecmint.com/rename-multiple-files-in-linux/).
+It also moves a file or directory to another location in the directory
+structure.
+
+\$ mv test.sh sysinfo.sh
+
+**nano Command**
+
+**nano** is a popular small, free and friendly [[text editor for
+Linux]{.ul}](https://www.tecmint.com/best-open-source-linux-text-editors/);
+a clone of **Pico**, the default editor included in the non-free Pine
+package.
+
+To open a file using nano, type:
+
+\$ nano file.txt
+
+**nc/netcat Command**
+
+**nc (or netcat)** is used for performing any operation relating to TCP,
+UDP, or UNIX-domain sockets. It can handle both IPv4 and IPv6 for
+opening TCP connections, sending UDP packets, listening on arbitrary TCP
+and UDP ports, [[performing port
+scanning]{.ul}](https://www.tecmint.com/check-remote-port-in-linux/).
+
+The command below will help us see if the port 22 is open on the host
+192.168.56.5.
+
+\$ nc -zv 192.168.1.5 22
+
+**netstat Command**
+
+[[netstat
+command]{.ul}](https://www.tecmint.com/20-netstat-commands-for-linux-network-management/) displays
+useful information concerning the Linux networking subsystem (network
+connections, routing tables, interface statistics, masquerade
+connections, and multicast memberships).
+
+This command will display all open ports on the local system:
+
+\$ netstat -a \| more
+
+**nice Command**
+
+**nice command** is used to show or change the nice value of a running
+program. It runs specified command with an adjusted niceness. When run
+without any command specified, it prints the current niceness.
+
+The following command starts the process "[[tar
+command]{.ul}](https://www.tecmint.com/18-tar-command-examples-in-linux/)"
+setting the "nice" value to 12.
+
+\$ nice -12 tar -czf backup.tar.bz2 /home/\*
+
+**nmap Command**
+
+[[nmap]{.ul}](https://www.tecmint.com/nmap-command-examples/) is a
+popular and powerful open source tool for network scanning and security
+auditing. It was intended to quickly scan large networks, but it also
+works fine against single hosts.
+
+The command below will probe open ports on all live hosts on the
+specified network.
+
+\$ nmap -sV 192.168.56.0/24
+
+**nproc Command**
+
+**nproc command** shows the number of processing units present to the
+current process. It's output may be less than the number of online
+processors on a system.
+
+\$ nproc
+
+**openssl Command**
+
+The **openssl** is a command line tool for using the different
+cryptography operations of OpenSSL's crypto library from the shell. The
+command below will create an archive of all files in the current
+directory and [[encrypt the contents of the
+archive]{.ul}](https://www.tecmint.com/encrypt-decrypt-files-tar-openssl-linux/) file:
+
+\$ tar -czf - \* \| openssl enc -e -aes256 -out backup.tar.gz
+
+**passwd Command**
+
+**passwd command** is used to create/update passwords for user accounts,
+it can also change the account or associated password validity period.
+Note that normal system users may only change the password of their own
+account, while root may modify the password for any account.
+
+\$ passwd tecmint
+
+**pidof Command**
+
+**pidof** displays the [[process ID of a running
+program]{.ul}](https://www.tecmint.com/find-process-name-pid-number-linux/)/command.
+
+\$ pidof init
+
+\$ pidof cinnamon
+
+**ping Command**
+
+**ping command** is used to determine connectivity between hosts on a
+network (or the Internet):
+
+\$ ping google.com
+
+**ps Command**
+
+ps shows useful information about [[active processes running on a
+system]{.ul}](https://www.tecmint.com/linux-process-management/). The
+example below shows the [[top running processes by highest memory and
+CPU
+usage]{.ul}](https://www.tecmint.com/find-linux-processes-memory-ram-cpu-usage/).
+
+\# ps -eo pid,ppid,cmd,%mem,%cpu \--sort=-%mem \| head
+
+**pstree Command**
+
+**pstree** displays running processes as a tree which is rooted at
+either PID or init if PID is omitted.
+
+\$ pstree
+
+**pwd Command**
+
+[[pwd
+command]{.ul}](https://www.tecmint.com/pwd-command-examples/) displays
+the name of current/working directory as below.
+
+\$ pwd
+
+**rdiff-backup Command**
+
+[[rdiff-backup]{.ul}](https://www.tecmint.com/rdiff-backup-remote-incremental-backup-for-linux/) is
+a powerful local/remote incremental backup script written in Python. It
+works on any POSIX operating system such as Linux, Mac OS X.
+
+Note that for remote backups, you must install the same version of
+rdiff-backup on both the local and remote machines. Below is an example
+of a local backup command:
+
+\$ sudo rdiff-backup /etc /media/tecmint/Backup/server_etc.backup
+
+**reboot Command**
+
+**reboot command** may be used to [[halt, power-off or reboot a
+system]{.ul}](https://www.tecmint.com/shutdown-poweroff-halt-and-reboot-commands-in-linux/) as
+follows.
+
+\$ reboot
+
+**rename Command**
+
+[[rename
+command]{.ul}](https://www.tecmint.com/rename-multiple-files-in-linux/) is
+used to rename many files at once. If you've a collection of files with
+"**.html**" extension and you want to rename all of them with "**.php**"
+extension, you can type the command below.
+
+\$ rename \'s/\\.html\$/\\.php/\' \*.html
+
+**rm command**
+
+**rm command** is used to remove files or directories as shown below.
+
+\$ rm file1
+
+\$ rm -rf my-files
+
+**rmdir Command**
+
+**rmdir command** helps to delete/remove empty directories as follows.
+
+\$ rmdir /backup/all
+
+**scp Command**
+
+[[scp
+command]{.ul}](https://www.tecmint.com/scp-commands-examples/) enables
+you to securely copy files between hosts on a network, for example.
+
+\$ scp \~/names.txt root\@192.168.56.10:/root/names.txt
+
+**shutdown Command**
+
+[[shutdown
+command]{.ul}](https://www.tecmint.com/shutdown-poweroff-halt-and-reboot-commands-in-linux/) schedules
+a time for the system to be powered down. It may be used to halt,
+power-off or reboot the machine like this.
+
+\$ shutdown \--poweroff
+
+**sleep Command**
+
+**sleep command** is used to delay or pause (specifically execution of a
+command) for a specified amount of time.
+
+\$ check.sh; sleep 5; sudo apt update
+
+**sort Command**
+
+[[sort command]{.ul}](https://www.tecmint.com/sort-command-linux/) is
+used to sort lines of text in the specified file(s) or from stdin as
+shown below
+
+\$ cat words.txt
+
+**split Command**
+
+[[split]{.ul}](https://www.tecmint.com/split-large-tar-into-multiple-files-of-certain-size/) as
+the name suggests, is used to split a large file into small parts.
+
+\$ tar -cvjf backup.tar.bz2 /home/tecmint/Documents/\*
+
+**ssh Command**
+
+[[ssh (SSH
+client)]{.ul}](https://www.tecmint.com/install-openssh-server-in-linux/) is
+an application for remotely accessing and running commands on a remote
+machine. It is designed to offer a secure encrypted communications
+between two untrusted hosts over an insecure network such as the
+Internet.
+
+\$ ssh tecmint\@192.168.56.10
+
+-   
+
+**stat Command**
+
+stat is used to show a file or file system status like this (-f is used
+to specify a filesystem).
+
+\$ stat file1
+
+**su Command**
+
+**su command** is used to switch to another user ID or become root
+during a login session. Note that when **su** is invoked without a
+username, it defaults to becoming root.
+
+\$ su
+
+\$ su tecmint
+
+**sudo Command**
+
+[[sudo
+command]{.ul}](https://www.tecmint.com/sudoers-configurations-for-setting-sudo-in-linux/) allows
+a permitted system user to run a command as root or another user, as
+defined by the security policy such as sudoers.
+
+In this case, the real (not effective) user ID of the user
+running **sudo** is used to determine the user name with which to query
+the security policy.
+
+\$ sudo apt update
+
+\$ sudo useradd tecmint
+
+\$ sudo passwd tecmint
+
+**sum Command**
+
+**sum command** is used to show the checksum and block counts for each
+each specified file on the command line.
+
+\$ sum output file.txt
+
+**tac Command**
+
+[[tac
+command]{.ul}](https://www.tecmint.com/learn-linux-cat-command-and-tac-command/) concatenates
+and displays files in reverse. It simply prints each file to standard
+output, showing last line first.
+
+\$tac file.txt
+
+**tail Command**
+
+[[tail
+command]{.ul}](https://www.tecmint.com/view-contents-of-file-in-linux/) is
+used to display the last lines (10 lines by default) of each file to
+standard output.
+
+If there more than one file, precede each with a header giving the file
+name. Use it as follow (specify more lines to display using -n option).
+
+\$ tail long-file
+
+OR
+
+\$ tail -n 15 long-file
+
+**talk Command**
+
+**talk command** is used to talk to another system/network user. To talk
+to a user on the same machine, use their login name, however, to talk to
+a user on another machine use 'user\@host'.
+
+\$ talk person \[ttyname\]
+
+OR
+
+\$ talk'user\@host' \[ttyname\]
+
+**tar Command**
+
+[[tar
+command]{.ul}](https://www.tecmint.com/18-tar-command-examples-in-linux/) is
+a most powerful utility for archiving files in Linux.
+
+\$ tar -czf home.tar.gz .
+
+**tee Command**
+
+**tee command** is used to read from standard input and prints to
+standard output and files as shown below.
+
+\$ echo \"Testing how tee command works\" \| tee file1
+
+**tree Command**
+
+The [[tree
+command]{.ul}](https://www.tecmint.com/linux-tree-command-examples/) is
+a tiny, cross-platform command-line program used to recursively list or
+display the content of a directory in a tree-like format.
+
+\$ tree
+
+**time Command**
+
+**time command** runs programs and summarizes system resource usage.
+
+\$ time wc /etc/hosts
+
+**top Command**
+
+[[top
+program]{.ul}](https://www.tecmint.com/12-top-command-examples-in-linux/) displays
+all processes on a Linux system in regards to memory and CPU usage and
+provides a dynamic real-time view of a running system.
+
+\$ top
+
+**touch Command**
+
+[[touch
+command]{.ul}](https://www.tecmint.com/8-pratical-examples-of-linux-touch-command/) changes
+file timestamps, it can also be used to create a file as follows.
+
+\$ touch file.txt
+
+**tr Command**
+
+**tr command** is a useful utility used to translate (change) or delete
+characters from stdin, and write the result to stdout or send to a file
+as follows.
+
+\$ cat domain-list.txt \| tr \[:lower:\] \[:upper:\]
+
+**uname Command**
+
+[[uname
+command]{.ul}](https://www.tecmint.com/find-linux-kernel-version-distribution-name-version-number/) displays
+system information such as operating system, network node hostname
+kernel name, version and release etc.
+
+Use the -a option to show all the system information:
+
+\$ uname
+
+**uniq Command**
+
+**uniq command** displays or omits repeated lines from input (or
+standard input). To indicate the number of occurrences of a line, use
+the -c option.
+
+\$ cat domain-list.txt
+
+**uptime Command**
+
+[[uptime
+command]{.ul}](https://www.tecmint.com/find-linux-uptime-shutdown-and-reboot-time-with-tuptime/) shows
+how long the system has been running, number of logged on users and the
+system load averages as follows.
+
+\$ uptime
+
+**users Command**
+
+**users command** shows the user names of users currently logged in to
+the current host like this.
+
+\$ users
+
+**vim/vi Command**
+
+[[vim (Vi Improved) popular text
+editor]{.ul}](https://www.tecmint.com/reasons-to-learn-vi-vim-editor-in-linux/) on
+Unix-like operating systems. It can be used to edit all kinds of plain
+text and program files.
+
+\$ vim file
+
+-   
+
+**w Command**
+
+**w command** displays system uptime, load averages and information
+about the users currently on the machine, and what they are doing (their
+processes) like this.
+
+\$ w
+
+**wall Command**
+
+**wall command** is used to send/display a message to all users on the
+system as follows.
+
+\$ wall "This is TecMint -- Linux How Tos"
+
+**watch Command**
+
+[[watch
+command]{.ul}](https://www.tecmint.com/run-repeat-linux-command-every-x-seconds/) runs
+a program repeatedly while displaying its output on fullscreen. It can
+also be used to watch changes to a file/directory. The example below
+shows how to watch the contents of a directory change.
+
+\$ watch -d ls -l
+
+**wc Command**
+
+[[wc command]{.ul}](https://www.tecmint.com/wc-command-examples/) is
+used to display newline, word, and byte counts for each file specified,
+and a total for many files.
+
+\$ wc filename
+
+**wget Command**
+
+[[wget
+command]{.ul}](https://www.tecmint.com/10-wget-command-examples-in-linux/) is
+a simple utility used to download files from the Web in a
+non-interactive (can work in the background) way.
+
+\$ wget -c http://ftp.gnu.org/gnu/wget/wget-1.5.3.tar.gz
+
+**whatis Command**
+
+[[whatis
+command]{.ul}](https://www.tecmint.com/find-linux-command-description-and-location/) searches
+and shows a short or one-line manual page descriptions of the provided
+command name(s) as follows.
+
+\$ whatis wget
+
+**which Command**
+
+**which command** displays the absolute path (pathnames) of the files
+(or possibly links) which would be executed in the current environment.
+
+\$ which who
+
+**who Command**
+
+**who command** shows information about users who are currently logged
+in like this.
+
+\$ who
+
+**whereis Command**
+
+[[whereis
+command]{.ul}](https://www.tecmint.com/find-linux-command-description-and-location/) helps
+us locate the binary, source and manual files for commands.
+
+\$ whereis cat
+
+**xargs Command**
+
+**xargs command** is a useful utility for reading items from the
+standard input, delimited by blanks (protected with double or single
+quotes or a backslash) or newlines, and executes the entered command.
+
+\$ echo /home/aaronkilik/test/ /home/aaronkilik/tmp \| xargs -n 1 cp -v
+/home/aaronkilik/bin/sys_info.sh
+
+**yes Command**
+
+**yes command** is used to display a string repeatedly until when
+terminated or killed using \[Ctrl + C\] as follows.
+
+\$ yes \"This is TecMint - Linux HowTos\"
+
+**youtube-dl Command**
+
+[[youtube-dl]{.ul}](https://www.tecmint.com/install-youtube-dl-command-line-video-download-tool/) is
+a lightweight command-line program to download videos and also [[extract
+MP3 tracks from
+YouTube.com]{.ul}](https://www.tecmint.com/download-mp3-track-from-youtube-video-using-youtube-dl/) and
+a few more sites.
+
+The command below will list available formats for the video in the
+provided link.
+
+\$ youtube-dl \--list-formats https://www.youtube.com/watch?v=iR
+
+**zcmp/zdiff Command**
+
+**zcmp** and **zdiff** minimal utilities used to compare compressed
+files as shown in the examples below.
+
+\$ zcmp domain-list.txt.zip basic_passwords.txt.zip
+
+\$ zdiff domain-list.txt.zip basic_passwords.txt.zip
+
+**zip Command**
+
+**zip** is a simple and easy-to-use utility used to package and compress
+(archive) files.
+
+\$ tar cf - . \| zip \| dd of=/dev/nrst0 obs=16k
+
+\$ zip inarchive.zip foo.c bar.c \--out outarchive.zip
+
+\$ tar cf - .\| zip backup -
+
+**zz Command**
+
+**zz command** is an alias of the [fasd commandline tool ]{.ul}that
+offers quick access to files and directories in Linux. It is used to
+quickly and interactively 
+
+###  **chage**
+
+The Linux command *chage* is an acronym for ***change age ***and it can
+be used to change the expiry information of the user's password.
+
+As you can see in the above screenshot you can also force the user to
+change the password after certain period of time i.e. periodically. This
+is an excellent command for system administrators.
+
+![](vertopal_b5b6fbcd35054093bbd495bb1803e80c/media/image1.png){width="6.268055555555556in"
+height="2.622916666666667in"}
+
+###  **help**
+
+When you execute this *help* command in Terminal window, it will list
+all built-in commands you can use in shell.
+
+### ![](vertopal_b5b6fbcd35054093bbd495bb1803e80c/media/image2.png){width="6.268055555555556in" height="3.527083333333333in"}
+
+### 
+
+###  **sl**
+
+This one is just for bit fun during the work and not a useful command.
+When executed a steam engine passes through Terminal window. You can try
+it for fun!
+
+If you are unable to see it then use the following command to install
+it.
+
+*\$ *sudo apt install sl
+
+![](vertopal_b5b6fbcd35054093bbd495bb1803e80c/media/image3.png){width="6.268055555555556in"
+height="3.527083333333333in"}
+
+###  **banner**
+
+banner is another fun command for Linux Terminal when executed
+with *banner \<your text\>* will display whatever text you type will be
+displayed in big banner format as you can see in following screenshot.
+
+*\$ *sudo apt-get install banner
+
+### ![](vertopal_b5b6fbcd35054093bbd495bb1803e80c/media/image4.png){width="6.268055555555556in" height="2.926388888888889in"} **aafire**
+
+How about putting the Terminal window on fire? Just fire the
+command *aafire* in the Terminal window and see the magic.
+
+*\$ *sudo apt-get install libaa-bin
+
+### ![](vertopal_b5b6fbcd35054093bbd495bb1803e80c/media/image5.png){width="6.268055555555556in" height="4.311805555555556in"}
+
+### **whoami**
+
+This command will help you to find out which user is logged into system
+or who you are logged in as.
+
+### ![](vertopal_b5b6fbcd35054093bbd495bb1803e80c/media/image6.png){width="6.268055555555556in" height="0.2972222222222222in"}
+
+### ![](vertopal_b5b6fbcd35054093bbd495bb1803e80c/media/image7.png){width="6.268055555555556in" height="3.6013888888888888in"} **lshw**
+
+sudo lshw command can be used to invoke detailed hardware information of
+the system on which Linux is running. It gives you every small detail
+about hardware, just try it.
+
+### ![](vertopal_b5b6fbcd35054093bbd495bb1803e80c/media/image8.png){width="6.268055555555556in" height="3.527083333333333in"}
+
+### ![](vertopal_b5b6fbcd35054093bbd495bb1803e80c/media/image9.png){width="6.268055555555556in" height="3.339583333333333in"}
+
+![](vertopal_b5b6fbcd35054093bbd495bb1803e80c/media/image10.png){width="6.268055555555556in"
+height="0.8111111111111111in"}
+
+###  **lsusb**
+
+*lsusb* command will show information about all the USB buses connected
+to the hardware and external USB devices connected to them as you can
+see in screenshot below.
+
+![](vertopal_b5b6fbcd35054093bbd495bb1803e80c/media/image11.png){width="6.268055555555556in"
+height="0.7118055555555556in"}
+
+###  **unzip**
+
+To extract files from compressed zip file use *unzip \<file
+name\>* command in Terminal shell. You can also use this command to
+extract files from multiple compressed files from the particular
+directory.
+
+### ![](vertopal_b5b6fbcd35054093bbd495bb1803e80c/media/image12.png){width="6.268055555555556in" height="0.6645833333333333in"}
+
+### ![](vertopal_b5b6fbcd35054093bbd495bb1803e80c/media/image13.png){width="6.268055555555556in" height="1.4479166666666667in"}
+
+### **service**
+
+service command will display results of System V init scripts in the
+Terminal window. You can view the status of particular service or all
+the services as shown in below screenshot.
+
+### ![](vertopal_b5b6fbcd35054093bbd495bb1803e80c/media/image14.png){width="6.268055555555556in" height="1.8006944444444444in"}**vmstat**
+
+vmstat command will display systems virtual memory usage on Terminal
+window.
+
+### ![](vertopal_b5b6fbcd35054093bbd495bb1803e80c/media/image15.png){width="6.268055555555556in" height="3.527083333333333in"} **mpstat**
+
+When executed mpstat command will display all the information about CPU
+utilization and performance stats on Linux Terminal window.
+
+### ![](vertopal_b5b6fbcd35054093bbd495bb1803e80c/media/image16.png){width="6.268055555555556in" height="1.0951388888888889in"}**usermod**
+
+If you want edit or modify attributes of already created user account
+then *usermod \<options\> login* is the best command for you.
+
+![](vertopal_b5b6fbcd35054093bbd495bb1803e80c/media/image17.png){width="6.268055555555556in"
+height="3.527083333333333in"}
+
+### **rpm**
+
+*rpm -i \<package name\>.rpm* command can be used to install rpm based
+packages on Linux. To remove rpm package use *rpm -e \<package
+name\>* command in Terminal shell.
+
+![](vertopal_b5b6fbcd35054093bbd495bb1803e80c/media/image18.png){width="6.268055555555556in"
+height="3.527083333333333in"}
+
+### telnet
+
+telnet command uses telnet protocol to connect to another system as a
+user.
+
+![](vertopal_b5b6fbcd35054093bbd495bb1803e80c/media/image19.png){width="6.268055555555556in"
+height="0.5041666666666667in"}
+
+###  **lsblk**
+
+lsblk command reads the sysfs filesystem and displays the block device
+information on the Terminal window.
+
+![](vertopal_b5b6fbcd35054093bbd495bb1803e80c/media/image20.png){width="6.268055555555556in"
+height="3.527083333333333in"}
+
+### **hdparm**
+
+Using hdparm command you can handle hard disk and other disk devices in
+the Linux using Terminal shell.
+
+### ![](vertopal_b5b6fbcd35054093bbd495bb1803e80c/media/image21.png){width="6.268055555555556in" height="3.527083333333333in"} **chrt**
+
+chrt \[option\] priority \[argument..\] command is used for manipulating
+the real-time attributes of the process.
+
+![](vertopal_b5b6fbcd35054093bbd495bb1803e80c/media/image22.png){width="6.268055555555556in"
+height="3.7777777777777777in"}
+
+###  **useradd**
+
+useradd \[optaons\] login command will help you add user account into
+your system
+
+![](vertopal_b5b6fbcd35054093bbd495bb1803e80c/media/image23.png){width="6.268055555555556in"
+height="3.527083333333333in"}
+
+###  **userdel**
+
+userdel \[option\] login command will let you delete any user account
+from the system.
+
+### ![](vertopal_b5b6fbcd35054093bbd495bb1803e80c/media/image24.png){width="6.268055555555556in" height="3.527083333333333in"}**usermod**
+
+Using usermod \[options\] login command you can modify any user account
+present on the system.
+
+![](vertopal_b5b6fbcd35054093bbd495bb1803e80c/media/image25.png){width="6.268055555555556in"
+height="3.527083333333333in"}
