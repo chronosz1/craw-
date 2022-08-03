@@ -1,0 +1,171 @@
+#http protocol:
+
+it's a core communication protocol used to access www(world wide web)
+
+- originally developed for retrieving static text-based resources.
+
+HTTP uses a message based model:
+
+client sends a request message ---------->
+<----------server sends a response message>
+
+The protocol is essentially connectionless:
+
+note: although HTTP uses the stateful TCP protocol as its transport mechanism,
+      each exchange of request and response is an autonomous transaction and may use a different TCP connection.
+
+# HTTP request:
+
+---
+
+```
+GET /auth/488/YourDetails.ashx?uid=129 HTTP/1.1
+Accept: application/x-ms-application, image/jpeg, application/xaml+xml,
+image/gif, image/pjpeg, application/x-ms-xbap, application/x-shockwave-
+flash, */*
+Referer: https://mdsec.net/auth/488/Home.ashx
+Accept-Language: en-GB
+User-Agent: Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64;
+Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR
+3.0.30729; .NET4.0C; InfoPath.3; .NET4.0E; FDM; .NET CLR 1.1.4322)
+Accept-Encoding: gzip, deflate
+Host: mdsec.net
+Connection: Keep-Alive
+Cookie: SessionId=5B70C71F3FD4968935CDB6682E545476
+```
+---
+
+> note: The ﬁrst line of every HTTP request consists of three items, separated by spaces.
+
+#things to notice in http request:
+
+method is GET , whose function is to retrieve a resource from the web server.
+GET requests do not have a message body, so no further data follows the blank-line after the message headers.
+
+
+The `Referer header` is used to indicate the URL from which the request
+originated (for example, because the user clicked a link on that page).
+
+Note: that this header was misspelled in the original HTTP speciﬁ cation, and the misspelled
+version has been retained ever since.
+
+The `Host header` speciﬁes the hostname that appeared in the full URL being accessed.
+
+This is necessary when multiple websites are hosted on the same server, because the URL sent in
+the ﬁrst line of the request usually does not contain a hostname.
+
+
+The `Cookie header` is used to submit additional parameters that the server has issued to the client.
+
+
+## HTTP response:
+
+```
+HTTP/1.1 200 OK
+Date: Tue, 19 Apr 2011 09:23:32 GMT
+Server: Microsoft-IIS/6.0
+X-Powered-By: ASP.NET
+Set-Cookie: tracking=tI8rk7joMx44S2Uu85nSWc
+X-AspNet-Version: 2.0.50727
+Cache-Control: no-cache
+Pragma: no-cache
+Expires: Thu, 01 Jan 1970 00:00:00 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 1067
+<!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Transitional//EN” “http://
+www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd”><html xmlns=”http://
+www.w3.org/1999/xhtml” ><head><title>Your details</title>
+...
+```
+---
+
+> The ﬁrst line of every HTTP response consists of three items, separated by spaces:
+
+- The HTTP version being used.
+
+- A numeric status code indicating the result of the request. 200 is the most common status code;
+  it means that the request was successful and that the requested resource is being returned.
+
+- The `Server header` contains a banner indicating the web server software being used, and sometimes
+  other details such as installed modules and the server operating system.
+  The information contained may or may not be accurate.
+
+- The `Set-Cookie` header issues the browser a further cookie; this is submitted back in the `Cookie header`
+  of subsequent requests to this server.
+
+- The `Pragma header` instructs the browser not to store the response in its cache.
+
+- The `Expires header` indicates that the response content expired in the past and therefore
+  should not be cached. These instructions are frequently issued when dynamic content is being
+  returned to ensure that browsers obtain a fresh version of this content on subsequent occasions.
+
+- Almost all HTTP responses contain a message body following the blank line after the headers.
+
+- The `Content-Type header` indicates that the body of this message contains an HTML document.
+
+- The `Content-Length header` indicates the length of the message body in bytes.
+
+---
+
+## HTTP Methods:
+
+When you are attacking web applications, you will be dealing almost exclusively
+with the most commonly used methods: GET and POST .
+
+You need to be aware of some important differences between these methods, as they can affect
+an application’s security if overlooked.
+
+The `GET method` is designed to retrieve resources. It can be used to send
+parameters to the requested resource in the URL query string.
+
+This enables users to bookmark a URL for a dynamic resource that they can reuse.
+Or other users can retrieve the equivalent resource on a
+subsequent occasion (as in a bookmarked search query). URLs are displayed on-screen and are logged in
+various places, such as the browser history and the web server’s access logs.
+
+They are also transmitted in the `Referer header` to other sites when external links are followed.
+
+For these reasons, the query string should not be used to transmit any sensitive information.
+
+The `POST method` is designed to perform actions. With this method, request
+parameters can be sent both in the URL query string and in the body of the message.
+
+Although the URL can still be bookmarked, any parameters sent in the message body will be excluded from the bookmark.
+
+These parameters will also be excluded from the various locations in which logs of URLs are maintained and
+from the `Referer header`.
+
+Because the `POST method` is designed for performing actions,
+if a user clicks the browser’s Back button to return to a
+page that was accessed using this method, the browser does not automatically
+reissue the request.
+
+Instead, it warns the user of what it is about to do, This prevents users from unwittingly performing an action more
+than once. For this reason, POST requests should always be used when an action
+is being performed.
+
+In addition to the `GET and POST methods`, the HTTP protocol supports numerous other methods
+that have been created for speciﬁ c purposes.
+Here are the other ones you are most likely to require knowledge of:
+
+---
+
+`HEAD` functions in the same way as a `GET request`, except that the server
+should not return a message body in its response. The server should return
+the same headers that it would have returned to the corresponding GET
+request. Hence, this method can be used to check whether a resource is
+present before making a `GET request` for it.
+
+`TRACE` is designed for diagnostic purposes. The server should return in the
+response body the exact contents of the request message it received. This
+can be used to detect the effect of any proxy servers between the client
+and server that may manipulate the request.
+
+`OPTIONS` asks the server to report the `HTTP methods` that are available for
+a particular resource. The server typically returns a response containing
+an Allow header that lists the available methods.
+
+`PUT` attempts to upload the speciﬁed resource to the server, using the content
+contained in the body of the request.
+If this method is enabled, you may be able to leverage it to attack the application, such as by uploading
+an arbitrary script and executing it on the server.
