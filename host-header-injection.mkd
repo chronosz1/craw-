@@ -1,0 +1,150 @@
+# What is a Host header?
+
+A Host header is a standard HTTP header field that is used to specify the domain name of the
+website that a user is trying to access.
+
+The Host header is used by the web server to determine which website to show the user.
+
+For example, when a user types in www.example.com, the web server will look at the Host header to
+figure out which website to show the user.
+
+If the Host header is set to www.example.com, the web server will show the user the website
+that is associated with that domain name.
+
+The Host header is also used by the web server to determine which website to show the user when
+the user types in an IP address. For example, if the user types in 192.168.1.1, the web server
+will look at the Host header to figure out which website to show the user.
+
+# How Host Header is relevant?
+
+Today, with the growth of cloud computing, it is common that one IP address does not point to a single
+domain.
+
+In other words, multiple websites or resources can be accessed by the IP address.
+
+The host header comes here to help reach the right component the client wants.
+
+# Host header can be vulnerable?
+
+An HTTP Host header attack is a type of attack where the attacker sends a request to a server with a
+fake Host header.
+
+This can be used to trick the server into thinking the request is coming from a different domain,
+or to redirect the request to a different website.
+
+An attacker can even inject a malicious payload that manipulates server-side behavior.
+This can potentially lead to several others attacks:
+
+    SSRF
+    Web cache poisoning
+    SQL , code execution,..
+
+
+In order to test for this type of vulnerability, the first step is to supply an arbitrary domain
+via the host header.
+
+To make this attack possible, you need to use a proxy that differentiates between the host header
+and the target IP.
+Then you can send an arbitrary host header while sending the request to the relevant website.
+
+The behavior of the target website can vary. You should inspect it attentively.
+For example, some servers are configured with a fallback if the domain name is not recognized.
+This case is pretty good for us.
+
+In other scenarios, if there is a firewall CDN or even a load-balancer, they may not know where to
+forward the request and that can result in an error. Your request will be unable to reach the
+website's server.
+
+Even though the host header is handled more securely, depending on the configuration of the servers
+that process incoming requests, the host can theoretically be overridden by injecting other headers.
+
+Sometimes website owners are unaware that certain headers are supported by default, and as a result,
+they may not be viewed with the same amount of attention.
+
+Keep in mind , many of these vulnerabilities are caused by unsecured configuration of one or
+more components in the linked infrastructure rather than by insecure code.
+
+These setup concerns can arise when websites include third-party technology into their architecture
+without fully comprehending the setting options and their security consequences.
+
+#How to test your Application?
+
+This section requires you to be more aware of server behavior.
+You need to understand how the website filters the host header.
+You should enter into hacker mode and try various techniques. For example, try to bypass by using
+a malicious sub-domain or different port.
+
+Your goal is to reach the target application.
+
+When systems dispute which header is accurate, it might lead to inconsistencies that you may
+be able to exploit.
+
+    Duplicate Host headers.
+
+Add a second Host header can be a possible method, if the website return a 200 status code
+the case can be investigate further.
+
+When systems dispute on which header is accurate, it might lead to inconsistencies that you
+may be able to exploit.
+
+![ss](./1.png)
+
+---
+
+1. Full URL By supply a absolute URL you can cause an unusual website behavior.
+
+```
+GET https://target-website.com/ HTTP/1.1
+Host: malicious payload
+
+```
+
+2. Line wrapping Try to indent a line with the "malicioussite" in the Host header.
+
+```
+GET /example HTTP/1.1
+    Host: malicioussite
+Host: vulnerable-website.com
+
+```
+
+Some website may block request with multiple host headers, but you can
+try to bypass this by indenting.
+Looking for a 200 response.
+
+
+1. Inject host override headers. The `X-Forwarded-Host` is used to identify the original request
+made by the client. You can sometimes use `X-Forwarded-Host` to inject your malicious input while
+circumventing any validation on the Host header itself.
+
+
+# How to exploit this misconfiguration?
+
+HTTP Host header vulnerabilities are often caused by the incorrect belief that the header is not controlled by the user.
+This provides implicit trust in the Host header, resulting in insufficient validation or escaping of its value.
+
+---
+
+** Reset password functionality **
+
+---
+
+If the application includes the host header while creating a new password reset links, an attacker can modify the host
+header with a domain that behind his control.
+
+---
+
+** Web cache poisoning **
+
+---
+
+If the Host header is reflected in the response markup without HTML-encoding, or even used directly in script imports.
+
+GET / HTTP/1.1
+Host: attacker.com
+
+The following will be served from the web cache when a victim visits the vulnerable application.
+
+** SSRF **
+
+Sometimes vulnerable host header can lead to Server-side-Forgery. Look for a 200 status code and investigate further
