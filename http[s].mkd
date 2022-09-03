@@ -31,7 +31,7 @@ the transaction is completed between the web browser and the server, the connect
 
 The full form of HTTPS is Hypertext Transfer Protocol Secure. 
 
-The HTTP protocol does not provide the security of the data, while HTTP ensures the security of the data. 
+The HTTP protocol does not provide the security of the data, while HTTPS ensures the security of the data. 
 Therefore, we can say that HTTPS is a secure version of the HTTP protocol. 
 
 This protocol allows transferring the data in an encrypted form. The use of HTTPS protocol 
