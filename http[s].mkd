@@ -1,3 +1,6 @@
+> let's understand urls first:
+> https://prof3ssorst3v3.github.io/url-parts/
+
 # HTTP vs HTTPS
 
 ## What is HTTP?
